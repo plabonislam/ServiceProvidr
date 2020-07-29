@@ -1,0 +1,61 @@
+<!-- offcanvas tab start-->
+<div id="offcanvas-tab" uk-offcanvas>
+    <div class="uk-offcanvas-bar">
+        <button class="uk-offcanvas-close" type="button" uk-close></button>
+            <section class="category-tab-offcanvas">
+                <div uk-grid>
+                    <div class="uk-width-auto@m uk-offcanvas-tab">
+                        <div class="uk-margin-medium-top">
+                           <ul class="uk-flex-left uk-margin-remove" uk-tab>
+                              <li class="uk-active"><a href="#"><i class="fa fa-bars"></i>Categories</a>
+                                </li>
+                                <li><a href="#"><i class="fa fa-viacoin"></i>Search Filter</a></li> 
+                            </ul><!-- uk-tab-filter -->
+
+                   <ul class="uk-switcher uk-margin">
+                      <li>
+                         
+                         <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
+                              <%  categoryItemList.forEach(function(itemdata){ %>
+                              <% if(itemdata.id == parentid) {%>
+                              <li class="uk-parent uk-open ">
+                                 <%} else{ %>
+                              <li class="uk-parent">
+                                 <% } %>
+                                 <a href="JavaScript:void(0);"> 
+                                 <%= itemdata.name %>  (<%= itemdata.count %>)</a>
+                                 <ul class="uk-nav-sub">
+                                    <% itemdata.child_categories.forEach(function(childdata){ %>
+                                    <% if(itemid==childdata.id) {%>
+                                    <li class="set-color" data-id="<%= childdata.id %>" @click="displaySubCategoryList('<%= childdata.id %>')">
+                                       <a v-bind:style="{ color: listingColor}" href="JavaScript:void(0);"><%= childdata.name %>
+                                       <span class="uk-align-right uk-margin-remove"> 
+                                       <%= childdata.count %>
+                                       </span>
+                                    </a>
+                                    </li>
+                                    <%} else{ %>
+                                    <li class="set-color" data-id="<%= childdata.id %>" @click="displaySubCategoryList('<%= childdata.id %>')">
+                                       <a  href="JavaScript:void(0);"><%= childdata.name %>
+                                       <span class="uk-align-right uk-margin-remove">
+                                       <%=childdata.count%>
+                                       </span>
+                                    </a>
+                                    </li>
+                                    <% } %>
+                                    <% }); %>
+                                 </ul>
+                              </li>
+                              <% }); %>
+                           </ul>
+                      </li>
+                      <li>
+                         <%- partial('form_search.ejs') %>
+                      </li>
+                   </ul>
+                  </div> <!-- div -->
+               </div>
+            </div>
+         </section><!--  offcanvas-section-end -->
+      </div><!--  offcanvas-bar -->
+   </div><!--  offcanvas-tab -->

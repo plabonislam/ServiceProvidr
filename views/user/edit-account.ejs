@@ -1,0 +1,160 @@
+<div id="edit-account" v-cloak class="uk-container uk-container-small uk-margin">
+	<div class="uk-grid-small uk-grid" uk-grid>
+
+		<%- partial('../layouts/layout-sidebar.ejs') %>
+
+		<div class="uk-width-expand@m">
+			<div class="uk-card uk-card-default uk-grid-collapse uk-padding uk-border-top">
+				<h1>Update Personal Info</h1>
+
+				<ajax-form  :syncing.sync="syncing" :handle-submitting="handle"  :cloud-error.sync="cloudError"   @submitted="submittedForm()"
+				 :handle-parsing="handleParsingForm" >
+				
+					<div class="row">
+					  	<div class="col-sm-6">
+							<div class="uk-margin-small">
+						  		<label for="full-name">Full Name</label>
+						  		<input class="uk-input" id="full-name" name="fullName" type="text"  :class="[formErrors.fullName ? 'is-invalid' : '']" v-model.trim="formData.fullName" placeholder="Sturgis P. Sturgeon" autocomplete="name" focus-first>
+						  		<div class="invalid-feedback" v-if="formErrors.fullName">Please enter your full name.</div>
+							</div>
+						 </div>
+						  
+						 <div class="uk-margin">
+							<label for="" class="uk-form-label">Description  </label>
+							<div class="uk-form-controls">
+								<textarea name="description" id="description" class="uk-textarea" rows="5" 
+								 :class="[formErrors.description ? 'is-invalid' : '']"
+								 v-model.trim="formData.description" placeholder="Insert your text here (maximum 500 character).">
+								</textarea>
+							</div>
+						 </div>
+					  	<div class="col-sm-6">
+							<div class="uk-margin-small">
+						  		<label for="email-address">Email Address</label>
+						  		<input class="uk-input" id="email-address" name="emailAddress" type="email"  :class="[formErrors.emailAddress ? 'is-invalid' : '']" v-model.trim="formData.emailAddress" placeholder="sturgeon@example.com" autocomplete="email" readonly >
+						  		<div class="invalid-feedback" v-if="formErrors.emailAddress">Please enter a valid email address.</div>
+							</div>
+					  	</div>
+				    </div>
+
+
+					<div class="uk-margin">
+						<label for="" class="uk-form-label">Contact No </label>
+						<div class="uk-form-controls">
+							<input type="text"  name= "phone" class="uk-input"
+							:class="[formErrors.phone ? 'is-invalid' : '']" v-model.trim="formData.phone" placeholder="Write your phone number">
+							<div class="invalid-feedback" v-if="formErrors.phone">Please enter your name</div>
+						</div>
+					</div>
+					
+					<div class="uk-margin">
+						<label for="" class="uk-form-label">Country </label> 
+						<div class="uk-form-controls">
+							<select @change="updateState" class="uk-select" name="countryId" id="countryId" :class="[formErrors.countryId? 'is-invalid' : '']" v-model.trim="formData.countryId">
+								<option value="">Select Country</option>
+								<% countryList.forEach(function(country){ %>
+									<option value="<%=country.id%>" > <%= country.name %> </option>
+								<%});%>
+							</select>
+							<div class="invalid-feedback" class="invalid-feedback" v-if="formErrors.countryId">Please enter your country name
+							</div>
+						</div> 
+					</div>
+				 
+					
+					<div class="uk-margin">
+						<label for="" class="uk-form-label">State</label> 
+						<div class="uk-form-controls">
+							<fieldset class="uk-fieldset">
+								<select @change="updateCity" class="uk-select" name="stateId" id="stateId" :class="[formErrors.stateId? 'is-invalid' : '']" v-model.trim="formData.stateId" >
+									<option value="">Select State</option>
+									<option v-for="item in stateList" :value="item.id">{{item.name}}</option>
+								</select>	
+							</fieldset>
+							
+							<div class="invalid-feedback" class="invalid-feedback" v-if="formErrors.stateId">
+								Please enter your state name
+							</div>
+						 
+						</div> 
+					</div>
+
+
+
+					<div class="uk-margin">
+						<label for="" class="uk-form-label">City </label> 
+						<div class="uk-form-controls">
+							<fieldset class="uk-fieldset">
+								<select v-if="cityList" class="uk-select" name="cityId" id="cityId" :class="[formErrors.cityId? 'is-invalid' : '']" v-model.trim="formData.cityId" >
+									<option value="">Select State</option>
+									<option v-for="item in cityList" :value="item.id">{{item.name}}</option>
+								</select>	
+							</fieldset>
+
+							<div class="invalid-feedback" class="invalid-feedback" v-if="formErrors.cityId">
+								Please enter your city name
+							</div>
+						 
+						</div> 
+					</div>
+
+					<div class="uk-margin">
+						<label for="" class="uk-form-label">Gender </label>
+						<div class="uk-form-controls">
+							<input type="radio" class="uk-radio" name="gender" :class="[formErrors.gender ? 'is-invalid' : '']" v-model.trim="formData.gender" value="men"> Men
+							<input type="radio" class="uk-radio" name="gender"
+								:class="[formErrors.gender ? 'is-invalid' : '']" v-model.trim="formData.gender" value="women"> Women
+							<div class="invalid-feedback" v-if="formErrors.gender">
+								Please Select your Gender
+							</div>
+							
+						</div> 
+					</div>
+
+
+					<div class="uk-margin" >
+							<label for="" class="uk-form-label">Image Upload </label> 
+							<div class="uk-form-controls">
+							     <input name="file" type="file"  @change="fileupload" id="file" 
+						    	 :class="[formErrors.file ? 'is-invalid' : '']"    >
+							</div> 
+					 </div>
+
+					<div class="row">
+					  	<div class="col-sm-6">
+							<p class="text-danger" v-if="cloudError === 'emailAlreadyInUse'">There is already an account using that email address.</p>
+							<p class="text-danger" v-else-if="cloudError">An error occured while processing your request. Please check your information and try again, or <a href="/contact">contact support</a> if the error persists.</ p>
+						</div>
+						
+					  
+					</div>
+					
+
+					<div class="uk-margin">
+							<div class="uk-flex" v-for="(file,index) in file" :key=index>
+								  <div class="uk-align-left">{{ file.name}}</div>
+								  <div @click="deleteEvent(index)"  class="uk-align-right"> <button class="uk-button uk-button-default"> <i class="fa fa-close"></i>  </button> </div>
+							</div>
+							<div class="uk-flex" v-for="(file,index) in errFile" >
+							   <div class="uk-align-left uk-text-warning">{{file.name}} {{ file.size < 10000000 ?" Not an image or acceptable image format":"too large" }} </div>
+							   <div @click="deleteEvent(index)"  class="uk-align-right"> <button class="uk-button uk-button-default">  </button> </div>
+							</div>
+							<img id="output"/>
+						 </div>
+						
+						 <div class="col-sm-6">
+								<div class="uk-margin text-right">
+									<a class="uk-button uk-button-secondary" href="/account">Cancel</a>
+									<ajax-button type="submit" :syncing="syncing" class="uk-button uk-button-primary">Save changes</ajax-button>
+								</div>
+							</div>
+				   </div>
+				  </ajax-form>
+				  
+			</div>
+		</div>
+		
+	</div>
+</div>
+<%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>
+	  

@@ -1,0 +1,31 @@
+<div class="uk-margin-bottom">
+  <div class="uk-width-auto">
+    <div
+      data-src="<%= item && item.images && item.images.length?item.images[0] : '/images/placeholder.png' %>"
+      uk-img
+    >
+      <img
+        class="uk-height-small uk-invisible"
+        src="<%= item && item.images && item.images.length && item.images[0] %>"
+        onError="this.onerror=null; this.src='../images/placeholder.png'; this.classList.remove('uk-invisible')"
+        alt=""
+        class="uk-invisible"
+      />
+    </div>
+  </div>
+  <div class="uk-width-expand">
+    <h5 class="uk-margin-remove-bottom">
+      <a href="/service/<%= item.slug %>"> <%= item.title %> </a>
+    </h5>
+    <div class="reviews">
+      <% let i %> <% for(i= 1;i<= item.ranking ;i++ ){ %>
+      <i class="fa fa-star"></i>
+      <% } %> <% var val = i-item.ranking %> <% if(val!=1){ %>
+      <i class="fa fa-star-half-o"></i>
+      <% i++ %> <% } %> <% for( var j= i;j<=5;j++ ){ %>
+      <i class="fa fa-star-o"></i>
+      <% } %>
+    </div>
+  </div>
+</div>
+<!-- uk-grid -->

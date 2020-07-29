@@ -1,0 +1,121 @@
+<div id="modal-location" uk-modal>
+  <div class="uk-modal-dialog uk-modal-body" style="    border-radius: 10px;">
+    <h2 class="uk-modal-title uk-text-center ">Select Service Location</h2>
+
+    <ajax-form
+      :handle-submitting="locationhandle"
+      :cloud-error.sync="cloudError"
+      :form-data="locationformData"
+      :form-errors.sync="formErrors"
+      @submitted="locationsubmittedForm()"
+      :handle-parsing="locationhandleParsingForm"
+      class="location-form"
+    >
+      <div class="uk-search-item">
+        <div
+          uk-form-custom="target: > * > span:first-child"
+          class="location-form-select"
+        >
+          <select
+            @change="locationupdateState"
+            class="LocationCountry"
+            name="country"
+            id="country"
+            v-model.trim="locationformData.country">
+          >
+            <option value=""> Select Country</option> 
+            <!-- <option v-bind:value="countryId"> {{countryname}}</option> -->
+            <% for (country of CountryList){ %>
+            <option value="<%= country.id %>"> <%= country.name %></option>
+            <% } %>
+          </select>
+
+          <button
+            class="uk-button uk-button-default uk-padding-remove uk-margin-remove-left"
+            type="button"
+            tabindex="-1"
+            style="width: 100%"
+          >
+            <span class="uk-align-left uk-margin-remove-bottom"></span>
+            <span
+              class="fa fa-angle-down uk-align-right uk-margin-small-top uk-margin-remove-bottom uk-margin-large-left"
+              style="font-size: 22px;"
+            ></span>
+          </button>
+        </div>
+      </div>
+      <div class="uk-search-item">
+        <div uk-form-custom="target: > * > span" class="location-form-select">
+          <select
+            @change="locationupdateCity"
+            name="state_location"
+            id="state_location"
+            class="LocationState"
+            v-model.trim="locationformData.state_location"
+          >
+            <!-- <option :value="stateId">{{ statename}}</option> -->
+            <option value=""> Select State</option>
+            <option v-for="item in stateList" :value="item.id">{{
+              item.name
+            }}</option>
+          </select>
+          <button
+            class="uk-button uk-button-default uk-padding-remove uk-margin-remove-left"
+            type="button"
+            tabindex="-1"
+            style="width: 100%"
+          >
+            <span class="uk-align-left uk-margin-remove-bottom"></span>
+            <span
+              class="fa fa-angle-down uk-align-right uk-margin-small-top uk-margin-remove-bottom uk-margin-large-left"
+              style="font-size: 22px;"
+            ></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="uk-search-item">
+        <div uk-form-custom="target: > * > span" class="location-form-select">
+          <select
+            @change="locationCity"
+            name="city_location"
+            id="city_location"
+            class="LocationCity"
+          >
+            <!-- <option :value="cityid">{{ cityname}}</option> -->
+            <option value=""> Select City</option>
+            <option v-for="item in cityList" :value="item.id">{{
+              item.name
+            }}</option>
+          </select>
+          <button
+            class="uk-button uk-button-default uk-padding-remove uk-margin-remove-left"
+            type="button"
+            tabindex="-1"
+            style="width: 100%"
+          >
+            <span class="uk-align-left uk-margin-remove-bottom"></span>
+            <span
+              class="fa fa-angle-down uk-align-right uk-margin-small-top uk-margin-remove-bottom uk-margin-large-left"
+              style="font-size: 22px;"
+            ></span>
+          </button>
+        </div>
+      </div>
+
+      <div
+        class="uk-text-center uk-margin-medium"
+        style="margin: 15px 0 !important"
+      >
+        <button class="uk-modal-close-default" type="button" uk-close></button>
+        <ajax-button
+          class="uk-button uk-button-primary uk-border-pill uk-width-1-1"
+          style="padding: 4px;
+                  font-size: 17px;
+                  font-weight: bold;"
+          >Save</ajax-button
+        >
+      </div>
+    </ajax-form>
+  </div>
+</div>

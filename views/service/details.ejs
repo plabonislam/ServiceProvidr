@@ -1,0 +1,149 @@
+
+<div id="details" v-cloak>
+    <section class="product-details uk-section uk-padding-remove-bottom">
+        <div class="uk-container uk-padding uk-padding-remove-top padding-mobile">
+            <div class="uk-grid">
+                <%- partial('../common/location_modalblock.ejs') %>
+                <%- partial('left_side.ejs') %>
+
+                <!-- sevice-main-body-middle -->
+                <div class="uk-width-expand@m">
+                    <div class="uk-article uk-padding padding-mobile uk-background-default">
+                        <h1 class="uk-text-lead"><%=item && item.title?item.title:''%></h1>
+                        <div class="uk-grid-small uk-margin-remove uk-flex-middle uk-padding-remove uk-grid">
+                            <%- partial('dropdown_rating.ejs') %>
+                                <div class="uk-width-expand uk-text-center">
+                                    <a class="uk-link-text" href="#review-tab" uk-scroll> </a>
+                                </div>
+                                <div class="uk-width-auto mobile-full-width padding-none">
+                                    <% if(Total.count !== 0){%>
+                                    <span class="uk-margin-small-right">
+                                        <%= Total.count %> Reviews
+                                    </span>
+                                        <span class="uk-divider-vertical"></span>
+                                        <%}%>
+                                        <% if(item.hits !== 0){%>
+                                    <span class=" uk-margin-small-left" href="#">
+                                        <%= item.hits %> Hits
+                                    </span>
+                                    <%}%>
+                                       
+                                </div>
+                        </div>
+                        <%- partial('service_details.ejs') %>
+                    </div>
+                    <!-- uk-article -->
+                    <% if(item.images.length>0){%>
+                    <%- partial('images.ejs') %>
+                    <% } %>
+
+                   
+                        
+                    <!--  map-start -->
+                    
+                    <%- partial('map.ejs') %>
+
+                    <div id="review-tab" class="uk-article review-tab uk-padding padding-mobile uk-background-default uk-margin-small-top uk-overflow-hidden">
+                        <ul class="uk-flex-left" uk-tab>
+                            <li class="uk-active">
+                                <a href="#">Reviews</a>
+                            </li>
+                           <% if(item.user.id != me.id){ %>
+                                <li><a href="#">New Review</a></li>
+                           <% } %>
+                            
+                        </ul>
+                                    <!-- uk-tab-filter -->
+                        <div class="uk-switcher uk-margin">
+                            <div class="review_list">
+                                <% if(sreview.length){ %>
+                                    <%-partial('review_list.ejs') %>
+                                <% }else{ %>
+                                    <div class="uk-alert">
+                                        No review yet!
+                                    </div> 
+                                <% } %>
+                            </div>
+                            <% if(item.user.id != me.id){ %>
+                            <div class="new_review">
+                                <%- partial('review_form.ejs') %>
+                            </div>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+
+                <!--  sidebar-start -->
+                <div class="uk-width-1-4@m">
+                    <% if(item.user.id == me.id){ %>
+                    <div class="uk-card uk-card-default uk-padding-small uk-article uk-padding">
+                    <%- partial('promot_add.ejs')  %>
+                    </div>
+
+                    <% } %>
+                    
+<div class="uk-card uk-margin-small-top uk-margin-small-bottom uk-card-default uk-padding-small uk-article uk-padding">
+    <div class="uk-card uk-card-default uk-padding-small">
+        <div class="uk-card-header uk-padding-small uk-margin-bottom uk-padding-remove-left uk-padding-remove-top">
+            <div class="">
+                <h4 class="uk-text-bold uk-margin-remove-bottom">Hot Service</h4>
+            </div>
+        </div>
+        <div class="uk-card-body uk-padding-remove uk-margin-small-top">
+            <%  servicesHot.forEach(function(item){ %>
+    
+            <%- partial('hotservice_rightbar',{item :item}) %>
+    
+            <%  }); %>
+        </div>
+        <!-- uk-card-body -->
+    </div>
+    </div>
+                       
+                </div>
+            <!-- uk-width-1-4@m -->
+            </div>
+        <!-- uk-grid -->
+        </div>
+    <!-- uk-container -->
+    </section>
+    <!-- category-tab -->
+
+    <% if(serviceListLength > 0){ %>
+        <section id="service" class="service uk-background-muted">
+            <div class="uk-section">
+                <div class="uk-container">
+                    <div class="section-heading uk-margin-large-bottom uk-text-center">
+                        <!-- Section Sub Title -->
+                        <h4 class="uk-heading-small uk-margin-small uk-text-uppercase">Hot below Services</h4>
+                        <!-- Section Title -->
+                        <h1 class="uk-heading-medium uk-margin-remove-top">The service provide your like this</h1>
+                    </div>
+                    <!-- Section heading -->
+                    <template v-if="SeoShowServiceList">
+                    <div class="uk-margin-remove-top uk-grid">
+                        <% serviceList.forEach(function(item){ %>
+                            <%- partial('../common/service_item.ejs',{item: item}) %>
+                        <% }); %>
+                    </div>
+                    </template>
+                    
+                    <div class="uk-grid uk-margin-remove-top">
+                        <template v-if="!SeoShowServiceList">
+                            <div v-for="item in serviceLists"
+                                class="uk-width-1-3@m uk-width-1-1@s uk-margin-medium-bottom home-recenlistingitem-bottom-margin">
+                                <%- partial('../home/recentlistingitem.ejs') %>
+                            </div>
+                        </template>
+                    </div>
+                   
+                    <!-- uk-grid -->
+                
+                <!-- uk-container -->
+            </div>
+            <!-- uk-section -->
+        </section>
+      <!-- end-section -->
+    <% } %>
+</div>
+<%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>

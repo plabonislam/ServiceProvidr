@@ -1,0 +1,198 @@
+<!-- uk-grid -->
+<div class="uk-width-1-6@m uk-visible@m">
+  <div class="user user-image serviceImg uk-background-default uk-margin-small-bottom">
+    <img class="serviceImg"
+      src=" <%= item && item.user && item.user.filepath!=''?item.user.filepath : '../images/user.png' %>"
+      onError="this.onerror=null; this.src='../images/user.png';"
+    />
+  </div>
+
+  <div class="contact-details uk-margin-small">
+    <p class="uk-padding-small uk-margin-small">
+      <i class="fa fa-phone uk-padding-remove"></i> Phone: <%= item && item.phone ? item.phone:'' %>
+    </p>
+    <p class="uk-padding-small uk-margin-small">
+      <i class="fa fa-id-card-o uk-padding-remove"> </i> Contact provider
+    </p>
+        <p class="uk-padding-small uk-margin-small" @click="mail()">
+            <a href=""></a> <i class="fa fa-envelope uk-padding-remove"> </i> Email a friend</a>
+        </p>
+    <p
+      @click="updateFavItemByUser('<%= postid %>')"
+      class="mark-as-fav-button uk-padding-small uk-margin-small"
+    >
+      <span v-if="fvalue">
+        <i class="fa fa-heart uk-padding-remove"> </i> Your favorite
+      </span>
+      <template v-if="!fvalue">
+        <span>
+          <i class="fa fa-heart-o uk-padding-remove"> </i> Mark as favorite
+        </span>
+        <div id="modal-center" class="uk-flex-top" uk-modal>
+          <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
+            <button
+              class="uk-modal-close-default"
+              type="button"
+              uk-close
+            ></button>
+            <%- partial('../common/modallogin.ejs') %>
+          </div>
+        </div>
+      </template>
+    </p>
+    <p
+      class="uk-padding-small uk-margin-small"
+      @click="inactive('<%= postid %>')"
+    >
+      <span v-if="!msgActive">
+        <i class="fa fa-flag uk-padding-remove"> </i> Mark as inactive
+      </span>
+      <span v-if="msgActive">
+        <i class="fa fa-flag uk-padding-remove"> </i> Marked as inactive
+      </span>
+    </p>
+  </div>
+
+  <!-- This is the modal -->
+  <div id="modal-example" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body details-mail">
+      <h3 class="uk-text-primary	">Send Mail to Service Provider</h3>
+      <p v-if="mailSuccessMessage" class="uk-text-primary">
+        Mail Sent succesfully
+      </p>
+      <hr />
+      <ajax-form
+        action="emailfriend"
+        
+        :cloud-error.sync="mailcloudError"
+        :form-data="mailformData"
+        :form-rules="mailformRules"
+        :form-errors.sync="formErrors"
+        @submitted="mailsubmittedForm()"
+      >
+        <button class="uk-modal-close-default" type="button" uk-close></button>
+
+        <div class="uk-margin-small">
+          <label class="">Receiver Mail</label>
+          <input
+            type="email"
+            class="uk-input uk-border-pill"
+            id="receiverEmail"
+            placeholder="Receiver mail"
+            :class="[formErrors.receiverEmail ? 'is-invalid' : '']"
+            v-model.trim="mailformData.receiverEmail"
+          />
+          <div
+            class="invalid-feedback uk-alert-warning uk-margin-small"
+            id="receiverEmail"
+            v-if="formErrors.receiverEmail"
+          >
+            Please provide a valid email address.
+          </div>
+        </div>
+        <div class="uk-margin-small">
+          <label class="">Mail Subject</label>
+          <input
+            type="text"
+            class="uk-input uk-border-pill"
+            id="subject"
+            placeholder="Mail Subject"
+            :class="[formErrors.subject ? 'is-invalid' : '']"
+            v-model.trim="mailformData.subject"
+          />
+          <div
+            class="invalid-feedback uk-alert-warning uk-margin-small"
+            id="subject"
+            v-if="formErrors.subject"
+          >
+            Please provide a valid subject.
+          </div>
+        </div>
+
+        <div class="uk-margin-small">
+          <label class="">Mail Body</label>
+          <textarea
+            class="uk-textarea"
+            id="description"
+            name="description"
+            value="description"
+            rows="3"
+            :class="[formErrors.description ? 'is-invalid' : '']"
+            v-model.trim="mailformData.description"
+            placeholder="Mail-Body"
+          ></textarea>
+          <div
+            class="invalid-feedback uk-alert-warning uk-margin"
+            id="description"
+            v-if="formErrors.description"
+          >
+            Please provide a valid title
+          </div>
+        </div>
+
+        <div class="uk-margin-small">
+          <label class="">Sender Mail</label>
+          <input
+            type="email"
+            class="uk-input uk-border-pill"
+            id="senderEmail"
+            placeholder="Sender mail"
+            :class="[formErrors.senderEmail? 'is-invalid' : '']"
+            v-model.trim="mailformData.senderEmail"
+          />
+          <div
+            class="invalid-feedback uk-alert-warning uk-margin-small"
+            id="senderEmail"
+            v-if="formErrors.senderEmail"
+          >
+            Please provide a valid sender emaid address.
+          </div>
+        </div>
+
+        <div class="uk-text-right">
+          <button
+            class="uk-button uk-button-default uk-modal-close"
+            type="button"
+          >
+            Cancel
+          </button>
+          <ajax-button
+            type="submit"
+            :syncing="mailsyncing"
+            class="uk-button uk-button-primary"
+            >Sent Your Email</ajax-button
+          >
+        </div>
+      </ajax-form>
+    </div>
+  </div>
+</div>
+<!-- uk-width-1-4 -->
+
+<div
+  class="uk-width-1-4@m uk-grid-small uk-margin-remove uk-hidden@m uk-hidden@l uk-hidden@xl"
+>
+  <div
+    class="uk-margin-small-bottom author-details uk-background-default uk-flex uk-flex-middle uk-padding-remove-left"
+  >
+    <div
+      class="uk-align-left uk-margin-remove-bottom uk-padding-small uk-margin-remove-right"
+    >
+      <img
+        class="uk-border-circle"
+        data-yy="hello"
+        src=" <%= item && item.user && item.user.filepath!=''?item.user.filepath : '../images/user.png' %>"
+        uk-img
+      />
+    </div>
+    <div class="uk-align-right uk-margin-remove-bottom uk-margin-remove-left">
+      <h4 class="contact-number uk-margin-remove">
+        <%= item && item.user && item.user.fullName?item.user.fullName:''%>
+      </h4>
+      <a href="#"><span class="fa fa-phone" title="Contact"></span></a>
+      <a href="#"><span class="fa fa-mobile" title="Mobile"></span></a>
+      <a href="#"><span class="fa fa-heart" title="Favorite"></span></a>
+      <a href="#"><span class="fa fa-flag" title="Flag"></span></a>
+    </div>
+  </div>
+</div>

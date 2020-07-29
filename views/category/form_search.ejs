@@ -1,0 +1,86 @@
+<% 
+var stateList, cityList; 
+
+stateList = cityList = []; 
+
+var setState = id=>{
+stateList = CountryList.filter(itm=>itm.id ==id);
+cityList= CountryList.filter(itm=>itm.id ==id);
+}
+%>
+
+
+
+<!-- </% scale_text = scale_image = 'free_transform'; %/> -->
+<ajax-form :handle-submitting="handle"  class="ajax-from-searchpage"  :handle-parsing="handleParsingForm">
+    <div class="uk-search-item">
+       <div uk-form-custom="target: > * > span:first-child">
+         <select name="category" id="category"  class="LocationCategory" @change="updateCategory">
+            <option value=""> Select Category </option>
+            
+            <% categoryList.forEach(function(item){ %>
+            <option class="uk-text-bolder-home" value="<%= item.slug %>"><%= item.name %></option>
+            <% item.child_categories.forEach(function(item){ %>
+            <option value="<%= item.slug %>">-- <%= item.name %></option>
+            <% }); %> <% }); %>
+         </select>
+          <button class="uk-button uk-button-default  uk-padding-remove btnforsearchpage " type="button" tabindex="-1">
+          <span class="uk-align-left uk-margin-remove-bottom"></span>
+          <span class="fa fa-angle-down uk-align-right uk-margin-small-top uk-margin-remove-bottom uk-margin-large-left"></span>
+          </button>
+       </div>
+    </div>
+    <div class="uk-search-item">
+       <div uk-form-custom="target: > * > span:first-child">
+          <select @change="updateState" class="LocationCountry " name="country" id="country" onchange="'<% setState(this.value) %>'">
+             <option value="">Select Country</option>
+             <% for (country of CountryList){ %>
+               <option value="<%= country.id %>"><%= country.name %></option>
+             <%  } %>
+            
+          </select>
+          <button class="uk-button uk-button-default uk-padding-remove uk-margin-remove-left btnforsearchpage" type="button" tabindex="-1">
+          <span class="uk-align-left uk-margin-remove-bottom"></span>
+          <span class="fa fa-angle-down uk-align-right uk-margin-small-top uk-margin-remove-bottom uk-margin-large-left angleforsearchpage"></span>
+          </button>
+       </div>
+    </div>
+    <div class="uk-search-item">
+       <div uk-form-custom="target: > * > span">
+          <select @change="updateCity" class="LocationState" name="state" id="state">
+             <option value="">Select State</option>
+             <option v-for="item in stateList" :value="item.id">{{item.name}}</option>
+          </select>
+          <button class="uk-button uk-button-default uk-padding-remove uk-margin-remove-left btnforsearchpage" type="button" tabindex="-1">
+          <span class="uk-align-left uk-margin-remove-bottom"></span>
+          <span class="fa fa-angle-down uk-align-right uk-margin-small-top uk-margin-remove-bottom uk-margin-large-left angleforsearchpage"></span>
+          </button>
+       </div>
+    </div>
+    <div class="uk-search-item">
+       <div uk-form-custom="target: > * > span">
+          <select name="city" id="city"  class="LocationCity" @change=" getCityId">
+             <option value="">Select City</option>
+             <option v-for="item in cityList" :value="item.id">{{item.name}}</option>
+          </select>
+          <button class="uk-button uk-button-default uk-padding-remove uk-margin-remove-left btnforsearchpage" type="button" tabindex="-1">
+          <span class="uk-align-left uk-margin-remove-bottom"></span>
+          <span class="fa fa-angle-down uk-align-right uk-margin-small-top uk-margin-remove-bottom uk-margin-large-left angleforsearchpage"></span>
+          </button>
+       </div>
+    </div>
+    <div  class="uk-text-center uk-margin-medium">
+       <ajax-button type="submit"  class="uk-button search-button uk-button-primary" value="search">
+       <i class="fa fa-search"></i>Search
+       </button>
+    </div>
+ </ajax-form>
+
+
+
+
+
+
+
+
+

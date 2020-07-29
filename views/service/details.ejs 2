@@ -1,0 +1,683 @@
+<section class="product-details uk-section uk-padding-remove-bottom">
+    <div class="uk-container uk-padding uk-padding-remove-top padding-mobile">
+      <div uk-grid>
+      <!-- uk-grid -->
+        <div class="uk-width-1-4@m uk-visible@m">
+          <div class="user uk-padding uk-background-default uk-margin-medium-bottom">
+            <img src="images/user.png">
+          </div>
+          <div class="contact-details uk-margin-small">
+            <p class="uk-padding-small uk-margin-small"><i class="fa fa-phone uk-padding-sma"></i> Phone: 3179838505</p>
+            <p class="uk-padding-small uk-margin-small"><i class="fa fa-id-card-o"></i>Contact Service Provider </p>
+            <p class="uk-padding-small uk-margin-small"><i class="fa fa-envelope"></i>Email a friend</p>
+            <p class="uk-padding-small uk-margin-small"><i class="fa fa-heart"></i>Mark as favorite </p>
+            <p class="uk-padding-small uk-margin-small"><i class="fa fa-flag"></i>Mark as Inactive</p>
+          </div>
+        </div> <!-- uk-width-1-4 -->
+
+        <div class="uk-width-1-4@m uk-grid-small uk-margin-remove uk-hidden@m uk-hidden@l uk-hidden@xl">
+          <div class="uk-margin-small-bottom author-details uk-background-default uk-flex uk-flex-middle uk-padding-remove-left">
+            <div class="uk-align-left uk-margin-remove-bottom uk-padding-small uk-margin-remove-right">
+              <img class="uk-border-circle" src="..images/user.png" uk-img>
+            </div>
+                <div class="uk-align-right uk-margin-remove-bottom uk-margin-remove-left">
+                  <h4 class="contact-number uk-margin-remove">Asraf Zaman</h4>  
+              <a href="#"><span class="fa fa-phone" title="Contact"></span></a>
+              <a href="#"><span class="fa fa-mobile" title="Mobile"></span></a>
+              <a href="#"><span class="fa fa-heart" title="Favorite"></span></a>
+              <a href="#"><span class="fa fa-flag" title="Flag"></span></a>
+                  </div>
+          </div>
+        </div>
+
+      <!-- sevice-item-start -->
+        <div class="uk-width-expand@m">
+          <div class="uk-article uk-padding padding-mobile uk-background-default">
+          <h1 class="uk-text-lead">Add this class to highlight text, for example in article subtitles.</h1>
+            <div class="uk-grid-small uk-margin-remove uk-flex-middle uk-padding-remove" uk-grid>
+                    <div class="uk-width-auto review uk-padding-remove">
+                      <div class="uk-inline">
+                    <button class="uk-button uk-button-default uk-padding-remove" type="button">    
+                    <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star"></i>
+                          <i class="fa fa-star-half-o"></i>
+                          <i class="fa fa-star-o"></i>
+                           <i class="fa fa-angle-down"></i>
+                          </button>
+                    <div uk-dropdown="animation: uk-animation-slide-top-small; duration: 300">
+                    <table class="uk-table">
+                        <caption class="uk-text-center">4.5 out of 5 reviews</caption>
+
+                        <tbody>
+                            <tr>
+                                <td><a href="#">5 Star</a></td>
+                                <td><progress id="js-progressbar" class="uk-progress" value="60" max="100"></progress></td>
+                                <td>60%</td>
+                            </tr>
+                            <tr>
+                                <td><a href="#">4 Star</a></td>
+                                <td><progress id="js-progressbar" class="uk-progress" value="50" max="100"></progress></td>
+                                <td>50%</td>
+                            </tr>
+                            <tr>
+                                <td><a href="#">3 Star</a></td>
+                                <td><progress id="js-progressbar" class="uk-progress" value="30" max="100"></progress></td>
+                                <td>30%</td>
+                            </tr>
+                             <tr>
+                                <td><a href="#">2 Star</a></td>
+                                <td><progress id="js-progressbar" class="uk-progress" value="10" max="100"></progress></td>
+                                <td>10%</td>
+                            </tr>
+                            <tr>
+                                <td><a href="#">1 Star</a></td>
+                                <td><progress id="js-progressbar" class="uk-progress" value="2" max="100"></progress></td>
+                                <td>2%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                  </div>
+                </div>
+                    </div>
+                    <div class="uk-width-expand uk-text-center">
+                        <a class="uk-link-text" href="#review-tab" uk-scroll>18 Reviews</a>
+                    </div>
+                    <div class="uk-width-auto mobile-full-width padding-none">
+                       <a class="uk-link-text" href="#">10 Answers Question</a>
+                    </div>
+                </div>
+                <ul class="uk-list uk-link-text">
+                <li>Category: <a href="#">Automative</a></li>
+                <li>Sub Category: <a href="#">Car Wash Details</a></li>
+                <li>Area Offerd: <a href="#">Austin and surrounding area</a></li>
+            </ul>
+            <p>Description:</p>
+            <p>I am an expert auto detailer and i utilize proficient gear. I have point by point autos for a long time in Indianapolis and subtle element autos for the colts players also in past . my work is great you will be inspire . to promote my work im just charging $50 . $50 i will completely specifying inside of your auto which likewise incorporates aerate, profound clean and shampooing your rug and seats in the event that you have calfskin inside i will condition and sparkle it up it , please get in touch with me at</p>
+
+            <p>3179838505</p>
+
+            <p>I likewise offer bikes and bikes and run my specifying administrations of it also. 20$ advancement at my shop get your auto vacuum and cleanser for $20 suv and trucks$30</p>
+
+            <p>Location is 16401 fm 1325 austin tx 78728</p>
+
+            <p>Try not to reach me with spontaneous administrations or offers:</p>
+              <ul class="uk-list uk-link-text">
+                <li>Compensation: <a href="#">Affortable Price</a></li>
+            </ul>
+          </div><!-- uk-article -->
+          <div class="uk-article uk-margin-medium-top uk-background-default">
+            <div class="uk-position-relative" uk-slideshow="animation: fade">
+                <ul class="uk-slideshow-items uk-margin-xlarge-bottom">
+                    <li>
+                         <img src="images/product.png" alt="" uk-cover></li>
+                    <li>
+                           <img src="images/service-1.jpg" alt="" uk-cover> 
+                    </li>
+                    <li>
+                        <img src="images/product.png" alt="" uk-cover> 
+                    </li>
+                </ul>
+
+                <div class="uk-position-bottom-center uk-position-small nav-img">
+                    <ul class="uk-thumbnav">
+                        <li uk-slideshow-item="0"><a href="#"><img src="images/product.png" width="70" alt=""></a></li>
+                        <li uk-slideshow-item="1"><a href="#"><img src="images/product.png" width="70" alt=""></a></li>
+                        <li uk-slideshow-item="2"><a href="#"><img src="images/product.png" width="70" alt=""></a></li>
+                    </ul>
+                </div>
+            </div>
+          </div> <!-- uk-article -->
+          <!--  map-start -->
+          <div class="uk-article uk-padding uk-background-default uk-margin-medium-top">
+            <p>Location:</p>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d14605.592254215118!2d90.34254761977539!3d23.7688354!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1558065885348!5m2!1sen!2sbd" width="1500" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+
+          </div><!-- uk-width-expand@m -->
+          <div id="review-tab" class="uk-article review-tab uk-padding padding-mobile uk-background-default uk-margin-medium-top uk-overflow-hidden">
+            <ul class="uk-flex-left" uk-tab>
+                  <li class="uk-active">
+                    <a href="#">Reviews</a>
+                  </li>
+                  <li><a href="#">New Review</a></li>
+              </ul> <!-- uk-tab-filter -->
+              <ul class="uk-switcher uk-margin">
+              <li>
+                  <div class="uk-grid-small uk-text-center uk-margin-remove" uk-grid>
+                    <div class="review-user uk-padding-small uk-width-auto uk-border-circle">
+                        <img src="images/user.png" uk-img>
+                    </div>
+                  <div class="uk-margin uk-align-right margin-left uk-width-expand uk-text-left uk-flex-middle uk-flex uk-padding-remove-left">
+                    <h3 class="author-name">Mr. Jhon</h3>
+                  </div> 
+                  </div>
+
+                  <div class="uk-margin-bottom uk-border-bottom" >
+                    
+                    <div class="uk-child-width-expand uk-grid-small uk-text-center uk-margin-top" uk-grid>
+                      <div>
+                          <div class="reviews">  
+                        <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-half-o"></i>
+                                <i class="fa fa-star-o"></i>
+                            </div>
+                            <div class="uk-list uk-margin-remove">
+                          <p><span>Overall</span><span>(5.00/5)</span></p>
+                      </div>
+                      </div>
+                    
+                    <div>
+                        <div class="reviews">  
+                      <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star-half-o"></i>
+                              <i class="fa fa-star-o"></i>
+                          </div>
+                          <div class="uk-list uk-margin-remove">
+                        <p><span>Skill</span><span>(5.00/5)</span></p>
+
+
+                    </div>
+                    </div>
+                    <div>
+                        <div class="reviews">  
+                      <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star-half-o"></i>
+                              <i class="fa fa-star-o"></i>
+                          </div>
+                        <div class="uk-list uk-margin-remove">
+                        <p><span>Ontime</span><span>(5.00/5)</span></p>
+                    </div>
+                    </div>
+                     <div>
+                        <div class="reviews">  
+                      <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star-half-o"></i>
+                              <i class="fa fa-star-o"></i>
+                          </div>
+
+
+
+                          <div class="uk-list uk-margin-remove">
+                        <p><span>Price</span><span>(5.00/5)</span></p>
+                    </div>
+                    </div>
+                    <div>
+                        <div class="reviews">  
+                      <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star-half-o"></i>
+                              <i class="fa fa-star-o"></i>
+                          </div>
+                          <div class="uk-list uk-margin-remove">
+                        <p><span>Communication</span><span>(5.00/5)</span></p>
+                    </div>
+                    </div>
+                      
+                  </div>
+                  <div>
+                    <p class="uk-text-left review-desc">Basically, they work just like the usual margin remove classes, Basically, they work just like the usual margin remove classes</p>
+                  </div>
+
+                </div>
+              
+                <div class="uk-grid-small uk-text-center uk-margin-remove" uk-grid>
+                    <div class="review-user uk-border-circle uk-padding-small uk-width-auto">
+                        <img src="images/user.png" uk-img>
+                    </div>
+                  <div class="uk-margin uk-align-right margin-left uk-width-expand uk-text-left uk-flex-middle uk-flex  uk-padding-remove-left">
+                    <h3 class="author-name">Mr. Asraf</h3>
+                  </div> 
+                  </div>
+                
+                  <div class="uk-margin-bottom" >
+                    
+                    <div class="uk-child-width-expand uk-grid-small uk-text-center uk-margin-top" uk-grid>
+                      <div>
+                          <div class="reviews">  
+                        <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-half-o"></i>
+                                <i class="fa fa-star-o"></i>
+                            </div>
+                            <div class="uk-list uk-margin-remove">
+                          <p><span>Overall</span><span>(5.00/5)</span></p>
+                      </div>
+                      </div>
+                    
+                    <div>
+                        <div class="reviews">  
+                      <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star-half-o"></i>
+                              <i class="fa fa-star-o"></i>
+                          </div>
+                          <div class="uk-list uk-margin-remove">
+                        <p><span>Skill</span><span>(5.00/5)</span></p>
+                    </div>
+                    </div>
+                    <div>
+                        <div class="reviews">  
+                      <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star-half-o"></i>
+                              <i class="fa fa-star-o"></i>
+                          </div>
+                        <div class="uk-list uk-margin-remove">
+                        <p><span>Ontime</span><span>(5.00/5)</span></p>
+                    </div>
+                    </div>
+                     <div>
+                        <div class="reviews">  
+                      <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star-half-o"></i>
+                              <i class="fa fa-star-o"></i>
+                          </div>
+                          <div class="uk-list uk-margin-remove">
+                        <p><span>Price</span><span>(5.00/5)</span></p>
+                    </div>
+                    </div>
+                    <div>
+                        <div class="reviews">  
+                      <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star"></i>
+                              <i class="fa fa-star-half-o"></i>
+                              <i class="fa fa-star-o"></i>
+                          </div>
+                          <div class="uk-list uk-margin-remove">
+                        <p><span>Communication</span><span>(5.00/5)</span></p>
+                    </div>
+                    </div>
+                      
+                  </div>
+                  <div>
+                    <p class="uk-text-left review-desc">lBasically, they work just like the usual margin remove classes, Basically, they work just like the usual margin remove classes</p>
+                  </div>
+
+                </div>
+              </li>
+              <li>
+                <div class="" uk-grid>
+                    <div class="uk-width-auto mobile-full-width">
+                        <div class="">
+                          <form>
+                          <fieldset class="uk-fieldset">
+                              <label class="">Title</label>
+                              <div>
+                                  <input class="uk-input" type="text" placeholder="Type Your Title">
+                              </div> <!-- input -->
+                              <div class="uk-margin">
+                                  <textarea class="uk-textarea" rows="5" placeholder="Review Description"></textarea>
+                              </div> <!-- text-area -->
+
+                              <div class="uk-margin">
+                                  <label>Do you receive the service?</label>
+                                <div>
+                                    <select class="uk-select">
+                                        <option>Yes</option>
+                                        <option>No</option>
+                                    </select>
+                                </div>
+                              </div> <!-- uk-margin -->
+
+                            <div class="uk-margin-large-top">
+                                  <button class="uk-text-capitalize uk-button uk-button-primary">Post My Review</button>
+                              </div>
+                          </fieldset>
+                      </form>
+                    </div>
+                  </div>
+                    <div class="uk-width-expand">
+                        <div class="uk-form-label">Overall</div>
+                        <div class="uk-form-controls uk-form-controls-text">
+                            <label><input class="uk-radio" type="radio" name="radio1">Great</label>
+                            <label><input class="uk-radio" type="radio" name="radio1">Good</label>
+                              <label><input class="uk-radio" type="radio" name="radio1">Moderate</label>
+                            <label><input class="uk-radio" type="radio" name="radio1">Not Bad</label>
+                              <label><input class="uk-radio" type="radio" name="radio1">Bad</label>
+                            <label><input class="uk-radio" type="radio" name="radio1">Very Bad</label>
+                        </div>
+                        <div class="uk-form-label uk-margin uk-margin-remove-bottom">Skill</div>
+                        <div class="uk-form-controls uk-form-controls-text">
+                            <label><input class="uk-radio" type="radio" name="radio1">Great</label>
+                            <label><input class="uk-radio" type="radio" name="radio1">Good</label>
+                              <label><input class="uk-radio" type="radio" name="radio1">Moderate</label>
+                            <label><input class="uk-radio" type="radio" name="radio1">Not Bad</label>
+                              <label><input class="uk-radio" type="radio" name="radio1">Bad</label>
+                            <label><input class="uk-radio" type="radio" name="radio1">Very Bad</label>
+                        </div>
+                        <div class="uk-form-label uk-margin uk-margin-remove-bottom">Ontime</div>
+                        <div class="uk-form-controls uk-form-controls-text">
+                            <label><input class="uk-radio" type="radio" name="radio1">Great</label>
+                            <label><input class="uk-radio" type="radio" name="radio1">Good</label>
+                              <label><input class="uk-radio" type="radio" name="radio1">Moderate</label>
+                            <label><input class="uk-radio" type="radio" name="radio1">Not Bad</label>
+                              <label><input class="uk-radio" type="radio" name="radio1">Bad</label>
+                            <label><input class="uk-radio" type="radio" name="radio1">Very Bad</label>
+                        </div>
+                        <div class="uk-form-label uk-margin uk-margin-remove-bottom">Price</div>
+                        <div class="uk-form-controls uk-form-controls-text">
+                            <label><input class="uk-radio" type="radio" name="radio1">Great</label>
+                            <label><input class="uk-radio" type="radio" name="radio1">Good</label>
+                              <label><input class="uk-radio" type="radio" name="radio1">Moderate</label>
+                            <label><input class="uk-radio" type="radio" name="radio1">Not Bad</label>
+                              <label><input class="uk-radio" type="radio" name="radio1">Bad</label>
+                            <label><input class="uk-radio" type="radio" name="radio1">Very Bad</label>
+                        </div>
+                        <div class="uk-form-label uk-margin uk-margin-remove-bottom">Communicate</div>
+                        <div class="uk-form-controls uk-form-controls-text">
+                            <label><input class="uk-radio" type="radio" name="radio1">Great</label>
+                            <label><input class="uk-radio" type="radio" name="radio1">Good</label>
+                              <label><input class="uk-radio" type="radio" name="radio1">Moderate</label>
+                            <label><input class="uk-radio" type="radio" name="radio1">Not Bad</label>
+                              <label><input class="uk-radio" type="radio" name="radio1">Bad</label>
+
+
+
+
+
+
+
+
+
+
+
+                              
+                            <label><input class="uk-radio" type="radio" name="radio1">Very Bad</label>
+                        </div>
+                    </div>
+                </div>
+              </li> 
+            </ul> <!-- ofuk-switcher -->
+          </div> <!-- review-tab -->
+        </div><!-- uk-width-1-3@m -->
+
+    <!--  sidebar-start -->
+        <div class="uk-width-1-4@m">
+          <div class="uk-card uk-card-default uk-padding-small">
+              <div class="uk-card-header uk-padding-small uk-margin-bottom uk-padding-remove-left uk-padding-remove-top">
+                  <div class="uk-grid-small uk-flex-middle">
+                      <h4 class="uk-text-bold uk-margin-remove-bottom">Promote Your Add</h4>
+                  </div>
+              </div> <!-- uk-card-header -->
+              <div class="uk-card-body uk-padding-remove uk-margin-small-top">
+                <ul class="uk-list">
+                  <li>1 Month - $15</li>
+                  <li>6 Month - $75</li>
+                  <li>1 Year - $120</li>
+              </ul>
+              </div> <!-- uk-card-body -->
+               <div class="uk-margin uk-margin-remove-bottom">
+                  <a href="#" class="uk-text-bold uk-button uk-button-text">Subscribe</a>
+              </div> 
+          </div> <!-- uk-card -->
+
+
+          <div class="uk-card uk-card-default uk-padding-small uk-margin-medium-top">
+              <div class="uk-card-header uk-padding-small uk-margin-bottom uk-padding-remove-left uk-padding-remove-top">
+                  <div class="uk-grid-small uk-flex-middle">
+                      <h4 class="uk-text-bold uk-margin-remove-bottom"><a href="#">Hot Service</a></h4>
+                  </div>
+              </div>
+              <div class="uk-card-body uk-padding-remove uk-margin-small-top">
+                <div class="uk-grid-small" uk-grid>
+                      <div class="uk-width-auto">
+                          <img class="" width="50" height="50" src="images/product-rating.png">
+                      </div>
+                      <div class="uk-width-expand">
+                          <h5 class="uk-margin-remove-bottom"><a href="#">Monitor the code?M</a></h5>
+                            <div class="reviews">  
+                    <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-half-o"></i>
+                            <i class="fa fa-star-o"></i>
+                        </div>
+                      </div>
+                  </div> <!-- uk-grid -->
+
+                  <div class="uk-grid-small" uk-grid>
+                      <div class="uk-width-auto">
+                          <img class="" width="50" height="50" src="images/product-rating.png">
+                      </div>
+                      <div class="uk-width-expand">
+                          <h5 class=" uk-margin-remove-bottom"><a href="#">Monitor the code</a></h5>
+                            <div class="reviews">  
+                    <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-half-o"></i>
+                            <i class="fa fa-star-o"></i>
+                        </div>
+                      </div>
+                  </div> <!-- uk-grid -->
+
+                  <div class="uk-grid-small" uk-grid>
+                      <div class="uk-width-auto">
+                          <img class="" width="50" height="50" src="images/product-rating.png">
+                      </div>
+                      <div class="uk-width-expand">
+                        <h5 class=" uk-margin-remove-bottom"><a href="#">Monitor the code</a></h5>
+                           <div class="reviews">  
+                    <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-half-o"></i>
+                            <i class="fa fa-star-o"></i>
+                            <i class="">(12)</i>
+                        </div>
+                      </div>
+                  </div><!-- uk-grid -->
+              </div> <!-- uk-card-body -->
+          </div> <!-- uk-card -->
+        </div><!-- uk-width-1-4@m -->
+      </div><!-- uk-grid -->
+    </div><!-- uk-container -->
+  </section> <!-- category-tab -->
+
+  <section id="service" class="service uk-background-muted">
+    <div class="uk-section">
+      <div class="uk-container">
+        <div class="section-heading uk-margin-large-bottom uk-text-center">
+                  <!-- Section Sub Title -->
+                  <h4 class="uk-heading-small uk-margin-small uk-text-uppercase">Hot Services</h4>
+                  <!-- Section Title -->
+                  <h1 class="uk-heading-medium uk-margin-remove-top">The service provide your like this</h1>
+              </div> <!-- Section heading -->
+              <!-- WP Posts -->
+              <div class="uk-margin-remove-top" uk-grid>
+                  <div class="uk-width-1-3@m uk-width-1-1@s">
+                      <div class="uk-article">
+                          <div class="uk-card uk-overflow-hidden uk-background-default">
+                              <div class="uk-visible-toggle uk-position-relative">
+                                   <div class="uk-card-media-top">
+                                      <a href="#">
+                                          <img data-src="images/service-1.jpg" alt="" uk-img>
+                                      </a>
+                                      <span class="uk-label uk-position-absolute">Travel</span>
+                                  </div> <!-- uk-card-media-top -->
+                                  <div class="uk-overlay-primary uk-position-cover uk-hidden-hover">
+                                      <div class="uk-position-center">
+                                          <div class="uk-grid-small uk-margin-remove" uk-grid>
+                                              <div class="uk-width-auto uk-padding-remove">
+                                                 <a href="#"><i class="overlay-icon fa fa-heart-o"></i></a>
+                                              </div>
+                                              <div class="uk-width-expand uk-margin-remove">
+                                                 <a href="#"> <i class="overlay-icon fa fa-long-arrow-right"></i></a>
+                                              </div>
+                                          </div>
+                                      </div> <!-- uk-position center -->
+                                  </div> <!-- uk-overlay primary -->
+                              </div> <!-- uk-visibilty -->
+                              <span class="uk-label uk-position-absolute">Travel</span>
+                              <div class="uk-card-body uk-padding-small uk-margin-small-top">
+                                 <h3 class="uk-card-title uk-margin-remove-top">
+                                      <a href="#">Monitor the code</a>
+                                  </h3>
+                                  <p class="uk-text-emphasis uk-margin-small">Harlem, New York | Distance : 2 KM</p>
+                                  <p class="uk-margin-remove-top">Compansation : Affordable Price</p>
+                              </div> <!-- uk-card-body -->
+                              <div class="uk-margin-remove-left service-meta uk-child-width-expand" uk-grid>
+                                  <div class="uk-width-expand uk-padding-remove-left first-child">
+                                      <div class="uk-grid-small uk-margin-remove uk-flex-middle uk-padding-small">
+                                          <div class="review uk-padding-remove">
+                                              <i class="fa fa-star"></i>
+                                              <i class="fa fa-star"></i>
+                                              <i class="fa fa-star"></i>
+                                              <i class="fa fa-star"></i>
+                                              <i class="fa fa-star-half-o"></i>
+                                               <p class="uk-text-meta uk-margin-remove uk-display-inline-block">(12)</p>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="uk-width-auto uk-padding-remove">
+                                      <div class="hover-icon uk-text-center">
+                                         <a class="uk-padding-small uk-display-inline-block"  href="#"><i class="fa fa-heart-o"></i></a>
+                                      </div>
+                                  </div>
+                                  <div class="uk-width-auto uk-padding-remove">
+                                      <div class="uk-text-center">
+                                         <a class="uk-padding-small read-more uk-display-block" href="#">Read More</a>
+                                      </div><!-- uk-text-center -->
+                                  </div> <!-- uk-width-1-3@m -->
+                              </div> <!-- service-meta -->
+                          </div> <!-- uk-card -->
+                      </div><!-- uk-article -->
+                  </div> <!-- uk-width-1-3@m -->
+
+
+                  <div class="uk-width-1-3@m uk-width-1-1@s">
+                      <div class="uk-article">
+                          <div class="uk-card uk-overflow-hidden uk-background-default">
+                              <div class="uk-visible-toggle uk-position-relative">
+                                   <div class="uk-card-media-top">
+                                      <a href="#">
+                                          <img data-src="images/service-1.jpg" alt="" uk-img>
+                                      </a>
+                                      <span class="uk-label uk-position-absolute">Travel</span>
+                                  </div> <!-- uk-card-media-top -->
+                                  <div class="uk-overlay-primary uk-position-cover uk-hidden-hover">
+                                      <div class="uk-position-center">
+                                          <div class="uk-grid-small uk-margin-remove" uk-grid>
+                                              <div class="uk-width-auto uk-padding-remove">
+                                                <a href="#"> <i class="overlay-icon fa fa-heart-o"></i></a>
+                                              </div>
+                                              <div class="uk-width-expand uk-margin-remove">
+                                                  <i class="overlay-icon fa fa-long-arrow-right"></i>
+                                              </div>
+                                          </div>
+                                      </div> <!-- uk-position center -->
+                                  </div> <!-- uk-overlay default -->
+                              </div> <!-- uk-visibilty -->
+                              <span class="uk-label uk-position-absolute">Travel</span>
+                                       <div class="uk-card-body uk-padding-small uk-margin-small-top">
+                                 <h3 class="uk-card-title uk-margin-remove-top">
+                                      <a href="#">Monitor the code</a>
+                                  </h3>
+                                  <p class="uk-text-emphasis uk-margin-small">Harlem, New York | Distance : 2 KM</p>
+                                  <p class="uk-margin-remove-top">Compansation : Affordable Price</p>
+                              </div> <!-- uk-card-body -->
+                               <div class="uk-margin-remove-left service-meta uk-child-width-expand" uk-grid>
+                                  <div class="uk-width-expand uk-padding-remove-left first-child">
+                                      <div class="uk-grid-small uk-margin-remove uk-flex-middle uk-padding-small">
+                                          <div class="review uk-padding-remove">
+                                              <i class="fa fa-star"></i>
+                                              <i class="fa fa-star"></i>
+                                              <i class="fa fa-star"></i>
+                                              <i class="fa fa-star"></i>
+                                              <i class="fa fa-star-half-o"></i>
+                                               <p class="uk-text-meta uk-margin-remove uk-display-inline-block">(12)</p>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="uk-width-auto uk-padding-remove">
+                                      <div class="hover-icon uk-text-center">
+                                         <a class="uk-padding-small uk-display-inline-block"  href="#"><i class="fa fa-heart-o"></i></a>
+                                      </div>
+                                  </div>
+                                  <div class="uk-width-auto uk-padding-remove">
+                                      <div class="uk-text-center">
+                                         <a class="uk-padding-small read-more uk-display-block" href="#">Read More</a>
+                                      </div><!-- uk-text-center -->
+                                  </div> <!-- uk-width-1-3@m -->
+                              </div> <!-- service-meta -->
+                          </div> <!-- uk-card -->
+                      </div><!-- uk-article -->
+                  </div> <!-- uk-width-1-3@m -->
+
+                  <div class="uk-width-1-3@m uk-width-1-1@s">
+                      <div class="uk-article">
+                          <div class="uk-card uk-overflow-hidden uk-background-default">
+                              <div class="uk-visible-toggle uk-position-relative">
+                                   <div class="uk-card-media-top">
+                                      <a href="#">
+                                          <img data-src="images/service-1.jpg" alt="" uk-img>
+                                      </a>
+                                      <span class="uk-label uk-position-absolute">Travel</span>
+                                  </div> <!-- uk-card-media-top -->
+                                  <div class="uk-overlay-primary uk-position-cover uk-hidden-hover">
+                                      <div class="uk-position-center">
+                                          <div class="uk-grid-small uk-margin-remove" uk-grid>
+                                              <div class="uk-width-auto uk-padding-remove">
+                                                 <a href="#"><i class="overlay-icon fa fa-heart-o"></i></a>
+                                              </div>
+                                              <div class="uk-width-expand uk-margin-remove">
+                                                  <a href="#"><i class="overlay-icon fa fa-heart-o"></i></a>
+                                              </div>
+                                          </div>
+                                      </div> <!-- uk-position center -->
+                                  </div> <!-- uk-overlay default -->
+                              </div> <!-- uk-visibilty -->
+                              <span class="uk-label uk-position-absolute">Travel</span>
+                                       <div class="uk-card-body uk-padding-small uk-margin-small-top">
+                                 <h3 class="uk-card-title uk-margin-remove-top">
+                                      <a href="#">Monitor the code</a>
+                                  </h3>
+                                  <p class="uk-text-emphasis uk-margin-small">Harlem, New York | Distance : 2 KM</p>
+                                  <p class="uk-margin-remove-top">Compansation : Affordable Price</p>
+                              </div> <!-- uk-card-body -->
+                              <div class="uk-margin-remove-left service-meta uk-child-width-expand" uk-grid>
+                                  <div class="uk-width-expand uk-padding-remove-left first-child">
+                                      <div class="uk-grid-small uk-margin-remove uk-flex-middle uk-padding-small">
+                                          <div class="review uk-padding-remove">
+                                              <i class="fa fa-star"></i>
+                                              <i class="fa fa-star"></i>
+                                              <i class="fa fa-star"></i>
+                                              <i class="fa fa-star"></i>
+                                              <i class="fa fa-star-half-o"></i>
+                                               <p class="uk-text-meta uk-margin-remove uk-display-inline-block">(12)</p>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="uk-width-auto uk-padding-remove">
+                                      <div class="hover-icon uk-text-center">
+                                         <a class="uk-padding-small uk-display-inline-block"  href="#"><i class="fa fa-heart-o"></i></a>
+                                      </div>
+                                  </div>
+                                  <div class="uk-width-auto uk-padding-remove">
+                                      <div class="uk-text-center">
+                                         <a class="uk-padding-small read-more uk-display-block" href="#">Read More</a>
+                                      </div><!-- uk-text-center -->
+                                  </div> <!-- uk-width-1-3@m -->
+                              </div> <!-- service-meta -->
+                          </div> <!-- uk-card -->
+                      </div><!-- uk-article -->
+                  </div> <!-- uk-width-1-3@m -->
+              </div> <!-- uk-grid -->
+      </div><!-- uk-container -->
+    </div> <!-- uk-section -->
+  </section> <!-- end-section -->

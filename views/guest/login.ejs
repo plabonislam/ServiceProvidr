@@ -1,0 +1,50 @@
+<div
+  id="login"
+  v-cloak
+  class="uk-flex uk-flex-center uk-flex-middle uk-margin-large "
+>
+  <div
+    class="container uk-card uk-card-default uk-padding uk-width-1-3@m uk-width-5-6 uk-border-top "
+  >
+    <h3 class="uk-text-warning title uk-margin-remove-bottom uk-text-center">
+      <%= userInfo? userInfo:"" %>
+    </h3>
+    <h3
+      class="uk-text-warning title uk-margin-remove-bottom uk-text-center"
+      v-if="cloudError==='badCombo2'"
+    >
+      Invalid user,Please Register
+    </h3>
+    <h3
+      class="uk-text-warning title uk-margin-remove-bottom uk-text-center"
+      v-else-if="cloudError==='badCombo1'"
+    >
+      Account is not activeted.Check your Email
+    </h3>
+    <h3
+      class="uk-text-warning title uk-margin-remove-bottom uk-text-center"
+      v-else-if="cloudError==='badCombo'"
+    >
+      The provided email and password combination does not match with any user
+    </h3>
+    <p
+      class="uk-text-warning title uk-margin-remove-bottom uk-text-center"
+      v-else-if="cloudError"
+    >
+      <small
+        >An error occured while processing your request. Please check your
+        information and try again, or <a href="/contact">contact support</a> if
+        the error persists.</small
+      >
+    </p>
+    <h1 class="uk-text-primary title uk-margin-remove-bottom uk-text-center">
+      Sign In
+    </h1>
+    <div class="login-form-container">
+      <hr />
+
+      <%- partial ('../common/loginfrom.ejs') %>
+    </div>
+  </div>
+</div>
+<%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>

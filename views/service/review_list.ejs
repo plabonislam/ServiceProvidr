@@ -1,0 +1,241 @@
+<!-- server side render for first loading -->
+
+<% sreview.forEach(function(item){ %>
+<div v-if="!csr_review">
+  <div class="uk-grid uk-grid-small uk-text-center uk-margin-remove">
+    <div class="review-user uk-padding-small uk-width-auto uk-border-circle">
+      <img src="<%= item && item.user_id && item.user_id.fullName
+      ?item.user_id.filepath: " " %>" uk-img />
+    </div>
+    <div
+      class="uk-margin uk-align-right margin-left uk-width-expand uk-text-left uk-flex-middle uk-flex uk-padding-remove-left"
+    >
+      <h3 class="author-name uk-padding-small">
+        <%= item && item.user_id && item.user_id.fullName
+        ?item.user_id.fullName: " " %>
+      </h3>
+    </div>
+
+    <div
+      class="uk-margin uk-align-right margin-left setLike "
+      data-id="<%=item.id%>"
+    >
+      <span
+        class="uk-padding-small tryIthelpfuk textHelful "
+        style="    padding: 0;
+                text-transform: uppercase;
+                font-size: 11px;
+            "
+      >
+        helpful(<%= item.helpful_count %>)</span
+      >
+      <i class="fa fa-thumbs-up likeButton"></i>
+    </div>
+  </div>
+  <div class="uk-margin-bottom uk-border-bottom">
+    <div
+      class="uk-child-width-expand uk-grid-small uk-text-center uk-margin-top uk-grid"
+    >
+      <div>
+        <div class="reviews">
+          <div class="star-rating">
+            <div
+              class="star"
+              style="<%= 'width:'+ item.overall/0.05 + '%' %>"
+            ></div>
+          </div>
+        </div>
+        <div class="uk-list uk-margin-remove">
+          <p class="textHelful">
+            <span>Overall</span><span>( <%= item.overall %>/5)</span>
+          </p>
+        </div>
+      </div>
+      <div>
+        <div class="reviews">
+          <div class="star-rating">
+            <div
+              class="star"
+              style="<%= 'width:'+ item.skill/0.05 + '%' %>"
+            ></div>
+          </div>
+        </div>
+        <div class="uk-list uk-margin-remove">
+          <p class="textHelful">
+            <span>Skill</span><span>(<%= item.skill %>/5)</span>
+          </p>
+        </div>
+      </div>
+      <div>
+        <div class="reviews">
+          <div class="star-rating">
+            <div
+              class="star"
+              style="<%= 'width:'+ item.ontime/0.05 + '%' %>"
+            ></div>
+          </div>
+        </div>
+        <div class="uk-list uk-margin-remove">
+          <p class="textHelful">
+            <span>Ontime</span><span>(<%= item.ontime %>/5)</span>
+          </p>
+        </div>
+      </div>
+      <div>
+        <div class="reviews">
+          <div class="star-rating">
+            <div
+              class="star"
+              style="<%= 'width:'+ item.price/0.05 + '%' %>"
+            ></div>
+          </div>
+        </div>
+
+        <div class="uk-list uk-margin-remove">
+          <p class="textHelful">
+            <span>Price</span><span>(<%= item.price %>/5)</span>
+          </p>
+        </div>
+      </div>
+      <div>
+        <div class="reviews">
+          <div class="star-rating">
+            <div
+              class="star"
+              style="<%= 'width:'+ item.communicate/0.05 + '%' %>"
+            ></div>
+          </div>
+        </div>
+        <div class="uk-list uk-margin-remove">
+          <p class="textHelful">
+            <span>Communication</span><span>(<%= item.communicate %>/5)</span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <p class="uk-text-left review-desc textHelful">
+        <%= item.description ? item.description : ""%>
+      </p>
+    </div>
+  </div>
+</div>
+<% }); %>
+
+<!-- client side render for ajax loading -->
+
+<div v-if="csr_review" v-for="item of sreview">
+  <div class="uk-grid uk-grid-small uk-text-center uk-margin-remove">
+    <div class="review-user uk-width-auto uk-padding-remove uk-border-circle">
+      <img
+        :src="item.user_id.filepath "
+        onerror="this.onerror=null;this.src='../images/user.png'"
+        uk-img
+      />
+    </div>
+    <div
+      class="uk-align-right margin-left uk-width-expand uk-text-left uk-flex-middle uk-flex uk-padding-remove-left"
+    >
+      <h3 class="author-name uk-padding-small" v-if="item.user_id">
+        {{ item.user_id.fullName }}
+      </h3>
+    </div>
+
+    <div
+      class="uk-margin uk-align-right margin-left setLike "
+      data-id="item.id"
+    >
+      <span
+        class="uk-padding-small tryIthelpfuk textHelful "
+        style="    padding: 0;
+                text-transform: uppercase;
+                font-size: 11px;
+            "
+      >
+        helpful({{ item.helpful_count }})</span
+      >
+      <i class="fa fa-thumbs-up likeButton"></i>
+    </div>
+  </div>
+  <div class="uk-margin-bottom uk-border-bottom">
+    <div
+      class="uk-child-width-expand uk-grid-small uk-text-center uk-margin-top uk-grid"
+    >
+      <div>
+        <div class="reviews">
+          <div class="star-rating">
+            <div class="star" :style="{ width: item.overall/0.05 + '%' }"></div>
+          </div>
+        </div>
+        <div class="uk-list uk-margin-remove">
+          <p class="textHelful">
+            <span>Overall</span><span>( {{ item.overall }}/5)</span>
+          </p>
+        </div>
+      </div>
+      <div>
+        <div class="reviews">
+          <div class="star-rating">
+            <div class="star" :style="{ width: item.skill/0.05 + '%' }"></div>
+          </div>
+        </div>
+        <div class="uk-list uk-margin-remove">
+          <p class="textHelful">
+            <span>Skill</span><span>({{ item.skill }}/5)</span>
+          </p>
+        </div>
+      </div>
+      <div>
+        <div class="reviews">
+          <div class="star-rating">
+            <div class="star" :style="{ width: item.ontime/0.05 + '%' }"></div>
+          </div>
+        </div>
+        <div class="uk-list uk-margin-remove">
+          <p class="textHelful">
+            <span>Ontime</span><span>( {{ item.ontime }} /5 )</span>
+          </p>
+        </div>
+      </div>
+      <div>
+        <div class="reviews">
+          <div class="star-rating">
+            <div class="star" :style="{ width: item.price/0.05 + '%' }"></div>
+          </div>
+        </div>
+
+        <div class="uk-list uk-margin-remove">
+          <p class="textHelful">
+            <span>Price</span><span>({{ item.price }}/5)</span>
+          </p>
+        </div>
+      </div>
+      <div>
+        <div class="reviews">
+          <div class="star-rating">
+            <div
+              class="star"
+              :style="{ width: item.communicate/0.05 + '%' }"
+            ></div>
+          </div>
+        </div>
+        <div class="uk-list uk-margin-remove">
+          <p class="textHelful">
+            <span>Communication</span><span>({{ item.communicate }}/5)</span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <p class="uk-text-left review-desc textHelful">
+        {{ item.description ? item.description : "" }}
+      </p>
+    </div>
+  </div>
+</div>
+
+<% if(reviewTotal>10){ %>
+<div class="uk-text-center">
+  <button class="uk-button-primary" :click="viewMoreReview">View More</button>
+</div>
+<% } %>

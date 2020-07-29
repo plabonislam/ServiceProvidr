@@ -1,0 +1,12 @@
+<ul>
+<% slist.forEach(function(item){ %>
+<li>
+	<div class="uk-card uk-text-center uk-padding uk-border-rounded">
+		<h3 class="uk-text-lead uk-margin-remove-bottom"><%= item.compensation%></h3>
+
+		<h3 class="uk-text-lead uk-margin-remove-bottom"><%= item.city.name%></h3>
+		<p></p>
+	</div>                                    
+</li> 
+<% }); %>
+</ul>

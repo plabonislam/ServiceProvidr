@@ -1,0 +1,197 @@
+<div
+  id="account-overview"
+  v-cloak
+  class="uk-container uk-container-small uk-margin"
+  v-cloak
+>
+  <div class="uk-grid-small uk-grid">
+    <%- partial('../layouts/layout-sidebar.ejs') %>
+
+    <div class="uk-width-expand@m">
+      <div class="uk-card uk-card-default uk-grid-collapse uk-padding">
+        <h1 class="uk-heading-medium uk-text-center uk-margin-small-bottom">
+          My account
+        </h1>
+        <hr class="uk-divider-icon" />
+
+        <div class="uk-grid mb-3 uk-margin-remove-left">
+          <div class="uk-width-2-3@m uk-padding-remove-left">
+            <h4 class="uk-text-primary title uk-margin-remove-bottom">
+              Personal information
+            </h4>
+          </div>
+          <div class="uk-width-1-3@m uk-text-right ">
+            <span class="float-sm-right">
+              <a
+                class="uk-button uk-button-primary uk-button-small account-settings-button"
+                href="/edit-profile"
+                >Edit profile</a
+              >
+            </span>
+          </div>
+        </div>
+        <div class="uk-grid uk-margin-remove-left">
+          <div class="uk-width-1-3@m uk-padding-remove-left">Name:</div>
+          <div class="uk-width-2-3@m">
+            <strong>{{ me.fullName }}</strong>
+          </div>
+        </div>
+        <div class="uk-grid uk-margin-remove-left">
+          <div class="uk-width-1-3@m uk-padding-remove-left">Email:</div>
+          <div class="uk-width-2-3@m">
+            <strong
+              :class="[me.emailStatus === 'unconfirmed' || me.emailStatus === 'change-requested' ? 'text-muted ' : '']"
+              >{{
+                me.emailChangeCandidate
+                  ? me.emailChangeCandidate
+                  : me.emailAddress
+              }}</strong
+            >
+            <span
+              v-if="me.emailStatus === 'unconfirmed' || me.emailStatus === 'change-requested'"
+              class="badge badge-pill badge-warning uk-background-muted uk-text-danger"
+              >Unverified</span
+            >
+          </div>
+        </div>
+        <hr />
+        <div class="uk-grid mb-3 uk-margin-remove-left">
+          <div class="uk-width-1-3@m uk-padding-remove-left">
+            <h4 class="uk-text-primary title uk-margin-remove-bottom">
+              Password
+            </h4>
+          </div>
+          <div class="uk-width-2-3@m uk-text-right">
+            <span class="">
+              <a
+                class="uk-button uk-button-primary uk-button-small account-settings-button"
+                href="/account/password"
+                >Change password</a
+              >
+            </span>
+          </div>
+        </div>
+        <div class="uk-grid uk-margin-remove-left">
+          <div class="uk-width-1-3@m uk-padding-remove-left">Password:</div>
+          <div class="uk-width-2-3@m"><strong>••••••••••</strong></div>
+        </div>
+        <hr />
+        <div class="uk-grid mb-3 uk-margin-remove-left" v-if="isBillingEnabled">
+          <div class="uk-grid-6 uk-padding-remove-left">
+            <h4>Billing</h4>
+          </div>
+          <div class="uk-grid-6 uk-margin-remove-left">
+            <span class="float-sm-right">
+              <ajax-button
+                :syncing="syncingOpenCheckout || syncingUpdateCard"
+                class="btn btn-sm btn-outline-info account-settings-button"
+                @click="clickStripeCheckoutButton()"
+              >
+                <span slot="syncing-state">
+                  <span v-if="syncingOpenCheckout">Connecting...</span>
+                  <span v-else>Updating...</span>
+                </span>
+                <span slot="default">{{
+                  me.hasBillingCard ? "Change card" : "Add card"
+                }}</span>
+              </ajax-button>
+            </span>
+          </div>
+        </div>
+        <div v-if="isBillingEnabled && me.hasBillingCard">
+          <div class="uk-grid uk-margin-remove-left">
+            <div class="uk-grid-6 uk-padding-remove-left">Credit card:</div>
+            <div class="uk-grid-8">
+              {{ me.billingCardBrand }} ending in
+              <strong>{{ me.billingCardLast4 }}</strong>
+              <a class="remove-button ml-2" @click="clickRemoveCardButton()"
+                >Remove</a
+              >
+            </div>
+          </div>
+          <div class="uk-grid uk-margin-remove-left">
+            <div class="uk-grid-6 uk-padding-remove-left">Expiration:</div>
+            <div class="uk-grid-8">
+              {{ me.billingCardExpMonth }}/{{ me.billingCardExpYear }}
+            </div>
+          </div>
+        </div>
+        <div
+          class="alert alert-danger"
+          v-else-if="isBillingEnabled && cloudError"
+        >
+          There was an error updating your credit card information. Please check
+          your information and try again, or
+          <a href="/contact">contact support</a> if the error persists.
+        </div>
+        <div class="alert alert-secondary" v-else-if="isBillingEnabled">
+          You have not linked a payment source to your account. In order to
+          access paid features, you'll need to provide your credit card
+          information. (Don't worry: you will only be charged when you've
+          reached the limit of your free plan.)
+        </div>
+
+        <% /* Confirm Remove Card Info Modal */ %>
+        <modal
+          v-if="removeCardModalVisible"
+          @close="closeRemoveCardModal()"
+          v-cloak
+        >
+          <div class="modal-header">
+            <h5 class="modal-title">Remove Card Info?</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span>&times;</span>
+            </button>
+          </div>
+          <ajax-form
+            action="updateBillingCard"
+            :syncing.sync="syncingRemoveCard"
+            :cloud-error.sync="cloudError"
+            :handle-parsing="handleParsingRemoveCardForm"
+            @submitted="submittedRemoveCardForm()"
+          >
+            <div class="modal-body">
+              <p>
+                Are you sure you want to remove your
+                {{ me.billingCardBrand }} ending in
+                <strong>{{ me.billingCardLast4 }}</strong
+                >?
+              </p>
+              <p class="text-muted">
+                This may restrict your access to paid features.
+              </p>
+              <p class="text-danger" v-if="cloudError">
+                <small
+                  >An error occured while processing your request. Please check
+                  your information and try again, or
+                  <a href="/contact">contact support</a> if the error
+                  persists.</small
+                >
+              </p>
+            </div>
+            <div class="modal-footer">
+              <button
+                data-dismiss="modal"
+                class="btn btn-outline-secondary mr-1"
+              >
+                Nevermind
+              </button>
+              <ajax-button
+                type="submit"
+                :syncing="syncingRemoveCard"
+                class="btn btn-danger ml-1"
+                >Remove</ajax-button
+              >
+            </div>
+          </ajax-form>
+        </modal>
+      </div>
+    </div>
+  </div>
+</div>
+<%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>

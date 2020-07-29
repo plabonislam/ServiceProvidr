@@ -1,0 +1,42 @@
+<div class="uk-card ">
+  <div class="uk-card-default uk-padding-small uk-flex uk-flex-middle">
+    <div class="uk-width-auto image-profile">
+      <% if (me.filepath) { %>
+      <img id="blahh" height="55" src="<%= me.filepath %>" img />
+      <% } else { %>
+      <svg
+        width="55"
+        height="55"
+        viewBox="0 0 20 20"
+        xmlns="http://www.w3.org/2000/svg"
+        data-svg="user"
+      >
+        <circle
+          fill="none"
+          stroke="#aaa"
+          stroke-width="1.1"
+          cx="9.9"
+          cy="6.4"
+          r="4.4"
+        ></circle>
+        <path
+          fill="none"
+          stroke="#aaa"
+          stroke-width="1.1"
+          d="M1.5,19 C2.3,14.5 5.8,11.2 10,11.2 C14.2,11.2 17.7,14.6 18.5,19.2"
+        ></path>
+      </svg>
+      <% } %>
+    </div>
+    <div class="uk-width-extend uk-margin-left">
+      <p
+        class="uk-text-small uk-text-bold uk-text-uppercase uk-margin-remove-bottom"
+      >
+        <%= me.fullName %>
+      </p>
+      <span class="uk-text-small uk-text-primary">
+        <a href="edit-profile">Edit Profile</a>
+      </span>
+    </div>
+  </div>
+</div>

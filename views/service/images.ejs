@@ -1,0 +1,45 @@
+<div class="uk-article uk-margin-small-top uk-background-default">
+  <!-- slider with thumb -->
+  <div class="uk-position-relative" uk-slideshow="animation: fade">
+    <ul class="uk-slideshow-items">
+      <% for(const it of item.images){ %>
+      <li class="uk-active uk-transition-active">
+        <div
+          class="uk-card-media-top uk-background-cover"
+          style="height: 100%;width: 100%;"
+          data-src="<%= it %>"
+          uk-img
+        >
+          <img
+            src="<%= it %>"
+            onError="this.onerror=null; this.src='/images/placeholder.png'; this.classList.remove('uk-invisible')"
+            alt=""
+            class="uk-invisible"
+            uk-img
+          />
+        </div>
+      </li>
+
+      <% } %>
+    </ul>
+
+    <div class="uk-position-bottom-center uk-position-small">
+      <ul class="uk-thumbnav">
+        <% for(const [i,it] of item.images.entries()){ %>
+        <li class="" uk-slideshow-item="<%=i%>">
+          <img
+            data-src="<%= it %>"
+            class="detailsSliderimage"
+            alt=""
+            uk-img
+            onError="this.onerror=null; this.src='../images/user.png';"
+          />
+        </li>
+
+        <% } %>
+      </ul>
+    </div>
+  </div>
+  <!-- slider with thumb -->
+</div>
+<!-- uk-article -->

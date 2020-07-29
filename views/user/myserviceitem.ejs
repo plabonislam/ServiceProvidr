@@ -1,0 +1,41 @@
+<div class="uk-card-media-left uk-cover-container" v-if="item.deleted===false">
+  <!-- onError="this.onerror=null;this.src='images/placeholder.png'" -->
+
+  <img
+    :src="item && item.images.length? item.images[0]:'images/placeholder.png'"
+    onError="this.onerror=null;this.src='images/placeholder.png'"
+    alt=""
+    style="height:250px;"
+    uk-img
+    uk-cover
+  />
+</div>
+<div v-if="item.deleted===false">
+  <div class="uk-card-body">
+    <h3 class="uk-card-title uk-margin-remove-top">
+      <a :href="'/service/'+ item.slug">{{ item.title }} </a>
+    </h3>
+    <p class="uk-text-emphasis uk-margin-small">
+      {{ item.city && item.city.name ? item.city.name + "," : "" }}
+      {{ item.state && item.state.name ? item.state.name + "," : "" }}
+      {{ item.country && item.country.name ? item.country.name : "" }}
+    </p>
+    <p class="uk-margin-remove-top">
+      Compansation : {{ item.compensation ? item.compensation : "" }}
+    </p>
+    <div>
+      <a
+        :href="'/editService/'+ item.slug"
+        class="uk-button uk-button-primary uk-button-small"
+      >
+        Edit
+      </a>
+      <a
+        v-on:click="deletePost(item.id)"
+        class=" uk-button uk-button-danger uk-button-small"
+      >
+        Delete
+      </a>
+    </div>
+  </div>
+</div>

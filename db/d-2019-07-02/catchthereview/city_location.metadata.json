@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":2,"key":{"_id":1},"name":"_id_","ns":"catchthereview.city_location"},{"v":2,"unique":true,"key":{"name":1},"name":"name_1","ns":"catchthereview.city_location"}],"uuid":"1c5d72477d0d4e01993422993e080e68"}

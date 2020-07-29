@@ -1,0 +1,97 @@
+<div class="uk-width-auto review uk-padding-remove">
+  <div class="uk-inline">
+    <button class="uk-button uk-button-default uk-padding-remove" type="button">
+      <% var rest =5-Math.floor(Total.Taverage); var rest2
+      =4-Math.floor(Total.Taverage) %> <% for(let i=0; i<
+      Math.floor(Total.Taverage); i++) {%>
+      <i class="fa fa-star"></i>
+      <% } %> <% if(Total.Taverage % 1 !=0) {%>
+      <i class="fa fa-star-half-o"></i>
+
+      <% for(let i=0; i< rest2; i++) {%>
+      <i class="fa fa-star-o"></i>
+      <% } %> <% }else{ %> <% for(let i=0; i< rest; i++) {%>
+      <i class="fa fa-star-o"></i>
+      <% } } %>
+
+      <i class="fa fa-angle-down"></i>
+    </button>
+    <div
+      class="uk-dropdown"
+      uk-dropdown="animation: uk-animation-slide-top-small;    duration: 300"
+    >
+      <table class="uk-table">
+        <caption class="uk-text-center">
+          <%=Total.Taverage %> out of <%= Total.count %> reviews
+        </caption>
+
+        <tbody>
+          <tr>
+            <td><a href="#">Overall</a></td>
+            <td>
+              <progress
+                id="js-progressbar"
+                class="uk-progress"
+                value="<%= Total.Toverall *20 %>"
+                max="100"
+              ></progress>
+            </td>
+            <td><%= Total.Toverall *20 %></td>
+          </tr>
+
+          <tr>
+            <td><a href="#">skill</a></td>
+            <td>
+              <progress
+                id="js-progressbar"
+                class="uk-progress"
+                value="<%= Total.Tskill * 20 %>"
+                max="100"
+              ></progress>
+            </td>
+            <td><%= Total.Tskill *20 %></td>
+          </tr>
+
+          <tr>
+            <td><a href="#">Communicate</a></td>
+            <td>
+              <progress
+                id="js-progressbar"
+                class="uk-progress"
+                value="<%= Total.Tcommunicate *20 %>"
+                max="100"
+              ></progress>
+            </td>
+            <td><%= Total.Tcommunicate *20 %></td>
+          </tr>
+
+          <tr>
+            <td><a href="#">price</a></td>
+            <td>
+              <progress
+                id="js-progressbar"
+                class="uk-progress"
+                value="<%= Total.Tprice *20 %>"
+                max="100"
+              ></progress>
+            </td>
+            <td><%= Total.Tprice *20 %></td>
+          </tr>
+
+          <tr>
+            <td><a href="#">Ontime</a></td>
+            <td>
+              <progress
+                id="js-progressbar"
+                class="uk-progress"
+                value="<%= Total.Tontime *20 %>"
+                max="100"
+              ></progress>
+            </td>
+            <td><%= Total.Tontime *20 %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

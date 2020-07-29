@@ -1,0 +1,229 @@
+<div class="uk-width-1-3@m uk-width-1-1@s uk-margin-medium-bottom">
+  <div class="uk-article">
+    <div class="uk-card  uk-background-default">
+      <div class="uk-visible-toggle uk-position-relative">
+        <div class="uk-card-media-top">
+          <a href="/service/<%= item.slug %>">
+            <img
+              src=" <%= item && item.images && item.images.length?item.images[0] : '../images/placeholder.png' %>"
+              onError="this.onerror=null; this.src='../images/placeholder.png';"
+              alt=""
+              style="height:250px;"
+              uk-img
+            />
+          </a>
+        </div>
+        <!-- uk-card-media-top -->
+      </div>
+      <!-- uk-visibilty -->
+      <span class="uk-label uk-position-absolute">
+        <a
+          href="/search?category=<%= item && item.category && item.category.slug? item.category.slug: 
+					''%>"
+        >
+          <%= item.category?item.category.name: "" %>
+        </a>
+      </span>
+      <div class="uk-card-body uk-padding-small uk-margin-small-top">
+        <h3 class="uk-card-title uk-margin-remove-top">
+          <a href="/service/<%= item.slug %>">
+            <%= item.title %>
+          </a>
+        </h3>
+        <p class="uk-text-emphasis uk-margin-small">
+          <%= item && item.city && item.city.name ? item.city.name : "" %>, <%=
+          item && item.state && item.state.name ? item.state.name : "" %> |
+          <del><del>Distance : 2 KM</del></del>
+        </p>
+        <p class="uk-margin-remove-top">
+          Compansation : <%= item && item.compensation ? item.compensation : ""
+          %>
+        </p>
+      </div>
+      <!-- uk-card-body -->
+      <div
+        class="uk-margin-remove-left service-meta uk-child-width-expand uk-grid"
+      >
+        <div class="uk-width-expand uk-padding-remove-left first-child">
+          <div
+            class="uk-grid-small uk-margin-remove uk-flex-middle uk-padding-small uk-grid"
+          >
+            <div class="review uk-padding-remove">
+              <% let i %> <% for(i= 1;i<= item.ranking ;i++ ){ %>
+              <i class="fa fa-star"></i>
+              <% } %> <% var val = i-item.ranking %> <% if(val!=1){ %>
+              <i class="fa fa-star-half-o"></i>
+              <% i++ %> <% } %> <% for( var j= i;j<=5;j++ ){ %>
+              <i class="fa fa-star-o"></i>
+              <% } %>
+              <p class="uk-text-meta uk-margin-remove uk-display-inline-block">
+                (<%= item.ranking %>) hits(<%= item.hits %>)
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="uk-width-auto uk-padding-remove">
+          <div class="hover-icon uk-text-center">
+            <% if(favourite && favourite.id){ %>
+            <p
+              class="uk-padding-small uk-margin-small"
+              :syncing="unfvalue"
+              @click="unfav('<%= postid %>')"
+            >
+              <span slot="syncing-state">
+                <span v-if="unfvalue">
+                  <i class="fa fa-heart-o"></i>
+                  Mark as favorite
+                </span>
+                <span v-else>
+                  <i class="fa fa-heart"></i>
+                  Your Favorite
+                </span>
+              </span>
+            </p>
+            <% } else{ %>
+            <a
+              :syncing="fvalue"
+              class="uk-padding-small uk-display-inline-block"
+              href=""
+              @click="fav('<%=item.id%>')"
+            >
+              <span slot="syncing-state">
+                <span v-if="fvalue">
+                  <i class="fa fa-heart"></i>
+                </span>
+                <template v-else>
+                  <span>
+                    <i class="fa fa-heart-o"></i>
+                  </span>
+                  <!-- <a class="uk-button uk-button-default" href="#modal-center" uk-toggle>Log in</a> -->
+
+                  <div id="modal-center" class="uk-flex-top" uk-modal>
+                    <div
+                      class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical"
+                    >
+                      <button
+                        class="uk-modal-close-default"
+                        type="button"
+                        uk-close
+                      ></button>
+
+                      <ajax-form
+                        action="login"
+                        :syncing.sync="syncing"
+                        :cloud-error.sync="cloudError"
+                        :form-data="formDataa"
+                        :form-rules="formRule"
+                        :form-errors.sync="formErrors"
+                        @submitted="submittedform('<%= postid %>','<%= item.slug %>')"
+                      >
+                        <div class="uk-margin-small">
+                          <input
+                            type="email"
+                            class="uk-input uk-border-pill"
+                            placeholder="Email address"
+                            :class="[formErrors.emailAddress ? 'is-invalid' : '']"
+                            v-model.trim="formDataa.emailAddress"
+                            autocomplete="email"
+                            focus-first
+                          />
+                          <div
+                            class="invalid-feedback uk-alert-warning uk-margin-small"
+                            v-if="formErrors.emailAddress"
+                          >
+                            Please provide a valid email address.
+                          </div>
+                        </div>
+                        <div class="uk-margin-small">
+                          <input
+                            type="password"
+                            class="uk-input uk-border-pill"
+                            placeholder="Password"
+                            :class="[formErrors.password ? 'is-invalid' : '']"
+                            v-model.trim="formDataa.password"
+                            autocomplete="current-password"
+                          />
+                          <div
+                            class="invalid-feedback uk-alert-warning uk-margin-small"
+                            v-if="formErrors.password"
+                          >
+                            Please enter your password.
+                          </div>
+                        </div>
+                        <div class="uk-margin-small form-check">
+                          <input
+                            class="uk-checkbox"
+                            type="checkbox"
+                            id="remember"
+                            name="rememberMe"
+                            v-model="formDataa.rememberMe"
+                          />
+                          <label class="form-check-label" for="remember"
+                            >Remember me</label
+                          >
+                        </div>
+                        <p class="text-danger" v-if="cloudError==='badCombo'">
+                          <small
+                            >The credentials you entered are not associated with
+                            an account. Please check your email and/or password
+                            and try again.</small
+                          >
+                        </p>
+                        <p class="text-danger" v-else-if="cloudError">
+                          <small
+                            >An error occured while processing your request.
+                            Please check your information and try again, or
+                            <a href="/contact">contact support</a> if the error
+                            persists.</small
+                          >
+                        </p>
+                        <div class="uk-margin-bottom">
+                          <ajax-button
+                            :syncing="syncing"
+                            class="uk-button uk-button-primary uk-border-pill uk-width-1-1"
+                            >Sign in</ajax-button
+                          >
+                        </div>
+                      </ajax-form>
+                      <p class="text-center">
+                        <a
+                          class="uk-link-reset uk-text-small"
+                          href="/password/forgot"
+                          >Forgot your password?</a
+                        >
+                      </p>
+                      <p class="text-center">
+                        <a class="uk-link-reset uk-text-small" href="/signup"
+                          >Sign Up for a new account.</a
+                        >
+                      </p>
+                    </div>
+                  </div>
+                </template>
+              </span>
+            </a>
+            <% } %>
+          </div>
+        </div>
+
+        <div class="uk-width-auto uk-padding-remove">
+          <!--  update 1-->
+          <div class="uk-text-center">
+            <a
+              class="uk-padding-small read-more uk-display-block"
+              href="/service/<%=item.slug%>"
+              >Read More</a
+            >
+          </div>
+          <!-- uk-text-center -->
+        </div>
+        <!-- uk-width-1-3@m -->
+      </div>
+      <!-- service-meta -->
+    </div>
+    <!-- uk-card -->
+  </div>
+  <!-- uk-article -->
+</div>
+<!-- uk-width-1-3@m -->

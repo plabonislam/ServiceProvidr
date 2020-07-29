@@ -1,0 +1,421 @@
+<div
+  id="edit-service"
+  class="uk-container uk-container-small uk-margin"
+  v-cloak
+>
+  <!-- Start User -->
+  <div class="uk-container uk-container-small uk-margin">
+    <div class="uk-grid-small uk-grid" uk-grid>
+      <%- partial('../layouts/layout-sidebar.ejs') %>
+      <!-- End Left Side -->
+      <!-- Start Right Side -->
+      <div class="uk-width-expand@m">
+        <div class="uk-card uk-card-body uk-card-default uk-border-top ">
+          <h1 class="uk-heading-medium uk-text-center uk-margin-small-bottom">
+            Edit Service
+          </h1>
+          <!-- <h1 class="uk-heading-medium uk-text-center">Your Info</h1>
+                  <hr class="uk-divider-icon"> -->
+          <ajax-form
+            :handle-submitting="handle"
+            :syncing.sync="syncing"
+            :cloud-error.sync="cloudError"
+            :form-data="formData"
+            :form-errors.sync="formErrors"
+            @submitted="submittedForm()"
+            enctype="multipart/form-data"
+            :handle-parsing="handleParsingForm"
+          >
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="uk-margin-small">
+                  <label for="title">Title</label>
+                  <input
+                    class="uk-input"
+                    id="title"
+                    name="title"
+                    type="text"
+                    :class="[formErrors.title ? 'is-invalid' : '']"
+                    v-model.trim="formData.title"
+                    placeholder="Home rental"
+                    focus-first
+                  />
+                  <div
+                    class="invalid-feedback uk-alert-warning uk-margin"
+                    v-if="formErrors.title"
+                  >
+                    Please provide a valid title
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="category" class="uk-margin">
+              <label for="" class="uk-form-label">Category</label>
+              <div class="uk-form-controls">
+                <select
+                  class="uk-select"
+                  @change="updateSubcategory"
+                  name="parent_category"
+                  id="parent_category"
+                  disabled="true"
+                  :class="[formErrors.parent_category? 'is-invalid' : '']"
+                  v-model.trim="formData.parent_category"
+                >
+                  <option v-for="item in categoryList" :value="item.id">{{
+                    item.name
+                  }}</option>
+                </select>
+                <div
+                  class="invalid-feedback uk-alert-warning uk-margin"
+                  v-if="formErrors.category"
+                >
+                  Please select your category
+                </div>
+              </div>
+            </div>
+            <div id="subcategory" class="uk-margin">
+              <label for="" class="uk-form-label">Sub-category:</label>
+              <div class="uk-form-controls">
+                <select
+                  class="uk-select"
+                  name="category"
+                  id="category"
+                  :class="[formErrors.category? 'is-invalid' : '']"
+                  disabled="true"
+                  v-model.trim="formData.category"
+                >
+                  <option v-for="item in SubcategoryList" :value="item.id">{{
+                    item.name
+                  }}</option>
+                </select>
+                <div
+                  class="invalid-feedback uk-alert-warning uk-margin"
+                  v-if="formErrors.category"
+                >
+                  Please select your category
+                </div>
+              </div>
+            </div>
+            <div class="uk-margin">
+              <label for="" class="uk-form-label">Description </label>
+              <div class="uk-form-controls">
+                <textarea
+                  name="description"
+                  id="description"
+                  class="uk-textarea"
+                  rows="5"
+                  :class="[formErrors.description ? 'is-invalid' : '']"
+                  v-model.trim="formData.description"
+                  placeholder="Insert your text here (maximum 500 character)."
+                >
+                </textarea>
+              </div>
+            </div>
+            <div class="uk-margin">
+              <label for="" class="uk-form-label">Website </label>
+              <div class="uk-form-controls">
+                <input
+                  name="website"
+                  id="website"
+                  type="url"
+                  class="uk-input"
+                  :class="[formErrors.website ? 'is-invalid' : '']"
+                  v-model.trim="formData.website"
+                />
+              </div>
+            </div>
+            <div id="tags" class="uk-margin">
+              <label for="" class="uk-form-label">Tags </label>
+              <div class="uk-form-controls">
+                <input
+                  name="tags"
+                  id="tags"
+                  type="text"
+                  class="uk-input"
+                  :class="[formErrors.tags ? 'is-invalid' : '']"
+                  v-model.trim="formData.tags"
+                />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="uk-margin-small">
+                  <label for="email-address">Email Address</label>
+                  <input
+                    class="uk-input"
+                    id="email"
+                    name="email"
+                    type="email"
+                    :class="[formErrors.email ? 'is-invalid' : '']"
+                    v-model.trim="formData.email"
+                    placeholder="sturgeon@example.com"
+                    autocomplete="email"
+                  />
+                  <div
+                    class="invalid-feedback uk-alert-warning uk-margin"
+                    v-if="formErrors.email"
+                  >
+                    Please provide a valid email
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="uk-margin">
+              <label for="" class="uk-form-label">Address </label>
+              <div class="uk-form-controls">
+                <textarea
+                  name="address"
+                  id="address"
+                  class="uk-textarea"
+                  rows="5"
+                  :class="[formErrors.address? 'is-invalid' : '']"
+                  v-model.trim="formData.address"
+                  placeholder="Insert your text here (maximum 500 character)."
+                >
+                </textarea>
+              </div>
+            </div>
+            <div class="uk-margin">
+              <label for="" class="uk-form-label">Contact No </label>
+              <div class="uk-form-controls">
+                <input
+                  type="text"
+                  name="phone"
+                  class="uk-input"
+                  :class="[formErrors.phone ? 'is-invalid' : '']"
+                  v-model.trim="formData.phone"
+                  placeholder="Write your phone number"
+                />
+                <div class="invalid-feedback" v-if="formErrors.phone">
+                  Please enter your name
+                </div>
+              </div>
+            </div>
+            <div class="uk-margin">
+              <label for="" class="uk-form-label">Country </label>
+              <div class="uk-form-controls">
+                <select
+                  @change="updateState"
+                  name="country"
+                  id="country"
+                  class="uk-select"
+                  :class="[formErrors.country? 'is-invalid' : '']"
+                  v-model.trim="formData.country"
+                >
+                  <option value="">Country</option>
+                  <%data.countries.forEach(function(country){%>
+                  <option value="<%= country.id %>"><%= country.name %></option>
+                  <%})%>
+                </select>
+                <div
+                  class="invalid-feedback uk-alert-warning uk-margin"
+                  v-if="formErrors.country"
+                >
+                  Select Your Country
+                </div>
+              </div>
+            </div>
+            <div class="uk-margin">
+              <label for="" class="uk-form-label">State</label>
+              <div class="uk-form-controls">
+                <select
+                  @change="updateCity"
+                  class="uk-select"
+                  name="state"
+                  id="state"
+                  :class="[formErrors.state? 'is-invalid' : '']"
+                  v-model.trim="formData.state"
+                >
+                  <option value="">Select State</option>
+                  <option v-for="item in stateList" :value="item.id">{{
+                    item.name
+                  }}</option>
+                </select>
+                <div
+                  class="invalid-feedback uk-alert-warning uk-margin"
+                  v-if="formErrors.state"
+                >
+                  Select Your State
+                </div>
+              </div>
+            </div>
+            <div class="uk-margin">
+              <label for="" class="uk-form-label">City</label>
+              <div class="uk-form-controls">
+                <select
+                  @change="updateArea"
+                  v-if="cityList"
+                  class="uk-select"
+                  name="city"
+                  id="city"
+                  :class="[formErrors.city? 'is-invalid' : '']"
+                  v-model.trim="formData.city"
+                >
+                  <option value="">Select State</option>
+                  <option v-for="item in cityList" :value="item.id">{{
+                    item.name
+                  }}</option>
+                </select>
+                <div
+                  class="invalid-feedback uk-alert-warning uk-margin"
+                  v-if="formErrors.city"
+                >
+                  Select Your City
+                </div>
+              </div>
+            </div>
+            <div class="uk-margin">
+              <label for="" class="uk-form-label">City Area</label>
+              <div class="uk-form-controls">
+                <select
+                  v-if="cityArea"
+                  name="location"
+                  id="location"
+                  class="uk-select"
+                  :class="[formErrors.location? 'is-invalid' : '']"
+                  v-model.trim="formData.location"
+                >
+                  <option value="">Area</option>
+                  <option v-for="item in cityArea" :value="item.id">{{
+                    item.name
+                  }}</option>
+                </select>
+              </div>
+            </div>
+            <div class="uk-margin">
+              <label for="" class="uk-form-label">Area Offered </label>
+              <div class="uk-form-controls">
+                <input
+                  name="area"
+                  id="area"
+                  type="text"
+                  class="uk-input"
+                  :class="[formErrors.area ? 'is-invalid' : '']"
+                  v-model.trim="formData.area"
+                />
+                <div
+                  class="invalid-feedback uk-alert-warning uk-margin"
+                  v-if="formErrors.area"
+                >
+                  Please provide a valid title
+                </div>
+              </div>
+            </div>
+            <div class="uk-margin">
+              <label for="" class="uk-form-label">Latitude </label>
+              <div class="uk-form-controls">
+                <input
+                  name="latitude"
+                  type="number"
+                  id="latitude"
+                  class="uk-input"
+                  :class="[formErrors.latitude ? 'is-invalid' : '']"
+                  v-model.trim="formData.latitude"
+                />
+              </div>
+            </div>
+            <div class="uk-margin">
+              <label for="" class="uk-form-label">Longitude </label>
+              <div class="uk-form-controls">
+                <input
+                  name="longitude"
+                  id="longitude"
+                  type="number"
+                  class="uk-input"
+                  :class="[formErrors.longitude ? 'is-invalid' : '']"
+                  v-model.trim="formData.longitude"
+                />
+              </div>
+            </div>
+            <div class="uk-margin">
+              <label for="" class="uk-form-label">Compensation </label>
+              <div class="uk-form-controls">
+                <input
+                  name="compensation"
+                  type="text"
+                  id="compensation"
+                  class="uk-input"
+                  :class="[formErrors.compensation ? 'is-invalid' : '']"
+                  v-model.trim="formData.compensation"
+                />
+              </div>
+            </div>
+            <div class="uk-margin">
+              <label for="" class="uk-form-label">Image Upload </label>
+              <div class="uk-form-controls">
+                <input
+                  name="file"
+                  type="file"
+                  multiple
+                  @change="fileupload"
+                  id="file"
+                  :class="[formErrors.file ? 'is-invalid' : '']"
+                />
+              </div>
+            </div>
+
+            <div class="uk-margin">
+              <div
+                class="uk-flex test-imageClass"
+                v-for="(file,index) in images"
+                :key="index"
+              >
+                <img
+                  class="edit-serviceImage"
+                  id="index"
+                  v-bind:src="file"
+                  height="50px"
+                  width="50px"
+                />
+                <div @click="RemovePreviousEvent(index)" class="uk-align-right">
+                  <span class="edit-cross"> <i class="fa fa-close"></i> </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="uk-margin">
+              <!-- <div class="uk-flex" v-for="(file,index) in uploadFile" :key=index>
+                      <div class="uk-align-left">{{ file.name}}</div>
+                      <div @click="deleteEvent(index)" class="uk-align-right">
+                          <button type="button" class="uk-button uk-button-default"> <i class="fa fa-close"></i> </button>
+                      </div>
+                  </div> -->
+            </div>
+
+            <!-- <div class="uk-margin"> -->
+            <!-- <div class="uk-flex" v-for="(file,index) in errFile">
+                      <div class="uk-align-left uk-text-warning">{{file.name}} {{ file.size
+                          < 10000000 ? " Not an image or acceptable image format": "too large" }} </div>
+                              <div @click="deleteEvent(index)" class="uk-align-right">
+                                  <button type="button" class="uk-button uk-button-default"> <i class="fa fa-close"></i> </button>
+                              </div>
+                      </div>
+                  </div> -->
+            <div class="uk-margin">
+              <div id="preview"></div>
+              <!-- <uploaded-image v-bind:images="images"/> -->
+            </div>
+
+            <div class="col-sm-6">
+              <div class="uk-margin text-right">
+                <a class="uk-button uk-button-success" href="/account"
+                  >Cancel</a
+                >
+                <ajax-button
+                  type="submit"
+                  :syncing="syncing"
+                  class="uk-button uk-button-primary"
+                  >Save Changes</ajax-button
+                >
+              </div>
+            </div>
+          </ajax-form>
+        </div>
+      </div>
+      <!-- End Right Side -->
+    </div>
+    <!-- End User -->
+  </div>
+</div>
+<%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>

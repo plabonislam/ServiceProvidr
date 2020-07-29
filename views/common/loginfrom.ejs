@@ -1,0 +1,72 @@
+<ajax-form
+  action="login"
+  :syncing.sync="syncing"
+  :cloud-error.sync="cloudError"
+  :form-data="formData"
+  :form-rules="formRules"
+  :form-errors.sync="formErrors"
+  @submitted="submittedForm()"
+>
+  <div class="uk-margin-small">
+    <input
+      type="email"
+      class="uk-input uk-border-pill"
+      placeholder="Email address"
+      :class="[formErrors.emailAddress ? 'is-invalid' : '']"
+      v-model.trim="formData.emailAddress"
+      autocomplete="email"
+      focus-first
+    />
+    <div
+      class="invalid-feedback uk-alert-warning uk-margin-small"
+      id="name"
+      v-if="formErrors.emailAddress"
+    >
+      Please provide a valid email address.
+    </div>
+  </div>
+  <div class="uk-margin-small">
+    <input
+      type="password"
+      class="uk-input uk-border-pill"
+      placeholder="Password"
+      :class="[formErrors.password ? 'is-invalid' : '']"
+      v-model.trim="formData.password"
+      autocomplete="current-password"
+    />
+    <div
+      class="invalid-feedback uk-alert-warning uk-margin-small"
+      v-if="formErrors.password"
+    >
+      Please enter your password.
+    </div>
+  </div>
+  <div class="uk-margin-small form-check">
+    <input
+      class="uk-checkbox"
+      type="checkbox"
+      id="remember"
+      name="rememberMe"
+      v-model="formData.rememberMe"
+    />
+    <label class="form-check-label" for="remember">Remember me</label>
+  </div>
+
+  <div class="uk-margin-bottom">
+    <ajax-button
+      :syncing="syncing"
+      class="uk-button uk-button-primary uk-border-pill uk-width-1-1"
+      >Sign in</ajax-button
+    >
+  </div>
+</ajax-form>
+<p class="text-center">
+  <a class="uk-link-reset uk-text-small" href="/password/forgot"
+    >Forgot your password?</a
+  >
+</p>
+<p class="text-center">
+  <a class="uk-link-reset uk-text-small" href="/signup"
+    >Sign Up for a new account.</a
+  >
+</p>

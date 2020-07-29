@@ -1,0 +1,133 @@
+<!-- header -->
+<div id="header" class="hero uk-section-small uk-position-top">
+    <div uk-sticky="sel-target: .uk-position-top; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar">
+        <div class="uk-position-top" style="position: relative; z-index: 980;width:100%;">
+            <nav class="uk-container-expand uk-navbar-transparent uk-navbar " uk-navbar >
+                  <a class="uk-navbar-item uk-logo uk-padding uk-padding-remove-vertical" href="/">
+                      <img src="/images/logo-catch.png" alt="">
+                  </a>
+                  <!-- <div class="uk-navbar-right uk-padding uk-padding-remove-vertical exampleheader" style="position: relative;"> -->
+                    <script>
+                      callme= async function(){
+                        let x=document.getElementsByClassName('form1')[0];
+                          x.style.width="250px";
+                          let y= document.getElementsByClassName('searchtag')[0];
+                          y.style.width="250px";
+                          y.style.background=" 0px solid #a0a0a0";
+                          $('searchtag').css('background', 'solid #a0a0a0'); 
+                      }
+                      checkSubmit= async function  (){
+                            let val=document.forms["form1"]["searchTag"].value;
+                            if(val== ""){
+                            
+                            }
+                            else{
+                              document.getElementById('form1').submit();
+                            }
+                            
+                        }
+                        checkWidth=function(){
+                          let x=document.getElementsByClassName('form1')[0];
+                          x.style.width="400px";
+                         
+                          let y= document.getElementsByClassName('searchtag')[0];
+                          y.style.width="400px";
+                        }
+                      </script>
+                      
+                      
+                     
+                   
+
+                    <div class="uk-navbar-right uk-margin@s formheader">
+                          <form  id="form1" name="form1" class="  uk-search uk-search-default form1"  method="GET"  action="/search" >
+                              <a class="uk-search-icon-flip" onclick="checkSubmit()" uk-search-icon></a>
+                              <input class="uk-search-input searchtag uk-padding-small" type="search" onblur="callme()"id="searchTag" onclick="checkWidth()" name="searchTag" placeholder="Search..." autofocus>
+                                      
+                          </form>
+                      </div> 
+
+                     
+                      <ul class="uk-navbar-nav uk-visible@m ">
+                          <!-- <li><a href="/search"><i class="fa fa-thumb-tack"></i>Search</a></li> -->
+
+                         
+                        <%if(req.path=='/'  || req.path.includes('/service/') || req.path.includes('/search')){ %>
+                            <li >
+                              <a href="#modal-location" id="exampleheaderlist" 
+                              uk-toggle>  <i class="fa fa-map-marker"></i>Choose Location </a>
+                            </li>
+                            <% } else { %>
+                              <!-- <li > 
+                                <a href="#modal-location" id="exampleheaderlist" > <i class="fa fa-map-marker"></i>Choose Location </a></li> -->
+                              <%  } %>
+                        
+                         
+                          <!-- LOGGED-IN NAVIGATION -->
+                          <% if(me) { %>
+                          <li>
+                              <a href="#"><i class="fa fa-user"></i><strong><%= me.fullName %></strong></a>
+                              <div class="uk-dropdown" uk-dropdown>
+                              <ul class="uk-nav uk-dropdown-nav">
+                         
+                             
+                              <li><a href="/my-favourite">My Favourite Sevices</a></li>
+                              <li><a href="/my-services">My Services</a></li>
+                            
+                              <li><a href="/new-posts">Add New Service</a></li>
+                              <li><a href="/edit-profile">Edit Profile</a></li>
+                              <li><a href="/logout">Logout</a></li>
+                              </ul>
+                              </div>
+                          </li>
+                          <% } else { %>
+                              <!-- LOGGED-OUT NAVIGATION -->
+                              <li><a href="/login"><i class="fa fa-user"></i> Login</a></li>
+                          <% } %>
+                      </ul>
+                      <a uk-navbar-toggle-icon="" href="#offcanvas-slide" uk-toggle class="uk-navbar-toggle toggle-menu uk-hidden@m uk-navbar-toggle-icon uk-icon">
+                          <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" data-svg="navbar-toggle-icon"><rect y="9" width="20" height="2"></rect><rect y="3" width="20" height="2"></rect><rect y="15" width="20" height="2"></rect></svg>
+                      </a>
+                  </div>
+            </nav>
+        </div>
+    </div>
+  
+    <div id="offcanvas-slide" uk-offcanvas>
+        <div class="uk-offcanvas-bar">
+          <button class="uk-offcanvas-close" type="button" uk-close></button>
+
+         
+
+       
+     
+         <ul class="uk-nav uk-nav-default">
+            <li class="uk-active"><a href="/">Home</a></li>
+            <li><a href="#"><i class="fa fa-thumb-tack"></i> Post Service</a></li>
+            <li><a href="#"><i class="fa fa-user"></i> Place</a></li>
+            <% if(me) { %>
+              <li><a href="/"><i class="fa fa-user"></i>User</a></li>
+            <% } else { %>
+               LOGGED-OUT NAVIGATION 
+              <li><a href="/login"><i class="fa fa-user"></i> Login/Register</a></li>
+            <% } %>
+        </ul> 
+        </div>
+    </div>
+  </div><!-- // end header -->
+ 
+  
+  <!-- Alert if email has not been confirmed -->
+  <% if(me && me.emailChangeCandidate) { %>
+  <div class="uk-container-fluid">
+    <div class="uk-alert uk-alert-warning mt-2 uk-text-center uk-margin-remove-bottom" role="alert">
+      Your updated email address needs verification. Until you click the link sent to <strong><%= me.emailChangeCandidate %></strong>, you'll still need to sign in as <strong><%= me.emailAddress %></strong>.
+    </div>
+  </div>
+  <% } else if(me && me.emailStatus === 'unconfirmed') { %>
+  <div class="uk-container-fluid">
+    <div class="uk-alert uk-alert-warning mt-2 uk-text-center uk-margin-remove-bottom" role="alert">
+      Your email address still needs verification. Your account access may be limited until you click the link sent to <strong><%= me.emailChangeCandidate ? me.emailChangeCandidate : me.emailAddress%></strong>.
+    </div>
+  </div>
+  <% } %>

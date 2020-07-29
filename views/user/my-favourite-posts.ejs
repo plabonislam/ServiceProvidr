@@ -1,0 +1,70 @@
+<!-- Start User -->
+<div id="my-favourite-posts" class="uk-container uk-container-small uk-margin">
+  <div class="uk-grid-small uk-grid" uk-grid>
+    <%- partial('../layouts/layout-sidebar.ejs') %>
+
+    <!-- End Left Side -->
+    <!-- Start Right Side -->
+    <div class="uk-width-expand@m">
+      <% if (!Favlist.length) { %>
+      <div class="uk-alert uk-alert-info">
+        You dont have any favourite services yet!
+      </div>
+      <% }else{ %> <% Favlist.forEach(function(item){ %>
+      <!-- End One Part -->
+      <div
+        class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin-bottom"
+        uk-grid
+      >
+        <div class="uk-card-media-left uk-cover-container">
+          <img
+            src="<%= item.postid && item.postid.images.length? item.postid.images[0]:'images/placeholder.png'%>"
+            onError="this.onerror=null;this.src='images/placeholder.png'"
+            alt=""
+            style="height:250px;"
+            uk-img
+            uk-cover
+          />
+        </div>
+        <div>
+          <div class="uk-card-body">
+            <h3 class="uk-card-title uk-margin-remove-top">
+              <a href="#"><%= item.postid.title %></a>
+            </h3>
+            <p class="uk-text-emphasis uk-margin-small">
+              <%= item.postid && item.postid.city && item.postid.city.name ?
+              item.city.name : "" %>, <%= item && item.state && item.state.name
+              ? item.state.name : "" %>
+              <del><del>Distance : 2 KM</del></del>
+            </p>
+            <p class="uk-margin-remove-top">
+              Compansation :<%= item.postid.compensation %>
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- Top Part -->
+      <% }); %> <% } %>
+
+      <!-- Start Pagination -->
+      <!--
+			<div class="uk-background-default">
+				<ul class="uk-pagination uk-flex-right uk-margin-medium-top" uk-margin>
+					<li><a href="#"><span uk-pagination-previous></span></a></li>
+					<li class="uk-active"><a href="#">1</a></li>
+					<li class="uk-disabled"><span>...</span></li>
+					<li><a href="#">5</a></li>
+					<li><a href="#">6</a></li>
+					<li ><span>7</span></li>
+					<li><a href="#">8</a></li>
+					<li><a href="#"><span uk-pagination-next></span></a></li>
+				</ul>
+			</div>
+			-->
+      <!-- End Pagination -->
+    </div>
+    <!-- End Right Side -->
+  </div>
+</div>
+<!-- End User -->
+<%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>

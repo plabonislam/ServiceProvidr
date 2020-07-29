@@ -1,0 +1,64 @@
+<section id="service" class="service uk-background-defaut">
+  <div class="uk-section-small">
+    <div class="uk-container hotservice-container">
+      <div class="slider-items uk-slider uk-position-relative">
+        <div
+          class="uk-slider uk-slider-container"
+          data-uk-slider="autoplay: false; finite: false; autoplay-interval: 3000;"
+          tabindex="-1"
+        >
+          <div class="section-heading uk-margin-large-bottom uk-text-center">
+            <!-- Section Sub Title -->
+            <h4 class="uk-heading-small uk-margin-small uk-text-uppercase">
+              Hot Services
+            </h4>
+            <!-- Section Title -->
+            <h1 class="uk-heading-medium uk-margin-remove-top">
+              The service provide your like this
+            </h1>
+          </div>
+          <!-- Section heading -->
+
+          <!-- WP Posts -->
+          <div class="uk-margin-remove-top">
+            <ul
+              class="uk-slider-items uk-child-width-1-4@m uk-child-width-1-2@s uk-child-width-1-1@xs uk-grid uk-hotservice-block "
+              data-uk-height-match="target: > li.uk-active > .uk-card; row: false"
+            >
+              <% data.servicesHot.forEach(function(item){ %>
+              <li data-service="service-<%=item.id%>">
+                <%- partial('../common/service_carousel_item.ejs', { item: item
+                }) %>
+              </li>
+              <% }); %>
+              <!-- WP Posts -->
+            </ul>
+
+            <div class="uk-visible@s">
+              <a
+                class="uk-position-center-left-out"
+                href="#"
+                uk-slidenav-previous
+                uk-slider-item="previous"
+              >
+              </a>
+              <a
+                class="uk-position-center-right-out"
+                href="#"
+                uk-slidenav-next
+                uk-slider-item="next"
+              >
+              </a>
+            </div>
+            <ul
+              class="uk-slider-nav uk-hidden@m uk-hidden@l uk-hidden@xl uk-dotnav uk-flex-center uk-margin"
+            ></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- uk-container -->
+  </div>
+  <!-- uk-section -->
+</section>
+<!-- end-section -->

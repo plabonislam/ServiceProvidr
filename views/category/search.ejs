@@ -1,0 +1,257 @@
+<div id="search" v-cloak>
+  <%- partial('../common/location_modalblock.ejs') %>
+  <section class="category-tab">
+    <!-- passing item id  -->
+    <span class="service-item" data-id="<%= itemid %>"> </span>
+    <span class="service-item-tag" data-id="<%= tag %>"> </span>
+    <div
+      class="uk-container-expand uk-padding uk-padding-remove-top uk-padding-remove-right uk-padding-remove-bottom"
+    >
+      <div
+        class="uk-grid"
+        uk-grid
+        uk-height-match="target: > div >a> div> div .google-map"
+      >
+        <!-- uk-tab start -->
+        <div class="uk-width-1-5@m uk-visible@m first-div-section-searchpage">
+          <div class="uk-background-default ">
+            <ul class="uk-flex-left uk-margin-remove" uk-tab>
+              <li class="uk-active" id="listSearch">
+                <a href="#"><i class="fa fa-bars"></i>Categories</a>
+              </li>
+              <li id="listSearch">
+                <a href="#" class="listSearchSide"
+                  ><i class="fa fa-viacoin"></i>Search Filter</a
+                >
+              </li>
+            </ul>
+
+            <ul class="uk-switcher uk-margin">
+              <li>
+                <ul
+                  class="uk-nav-default uk-nav-parent-icon"
+                  v-if="!categoryLoading"
+                  uk-nav
+                >
+                  <li
+                    v-for="itemdata in categoryItemLists"
+                    class="uk-parent"
+                    v-bind:class="itemdata.id == parentid? 'uk-open':''"
+                  >
+                    <a href="JavaScript:void(0);" class="color-parent">
+                      {{
+                        itemdata.name && itemdata.name.length > 20
+                          ? itemdata.name.slice(0, 19) + "...     " + "  "
+                          : itemdata.name
+                      }}
+                      ({{ itemdata.count }})
+                    </a>
+
+                    <ul class="uk-nav-sub">
+                      <li
+                        v-for=" childdata in    itemdata.child_categories"
+                        class="set-color"
+                        data-id="childdata.id"
+                        @click="displaySubCategoryList(childdata.id)"
+                      >
+                        <a
+                          v-if="itemid == childdata.id"
+                          v-bind:style="{ color: listingColor}"
+                          class="color"
+                          href="JavaScript:void(0);"
+                        >
+                          {{ childdata.name }}
+                          <span class="uk-align-right uk-margin-remove">
+                            {{ childdata.count }}
+                          </span>
+                        </a>
+
+                        <a
+                          v-if="itemid != childdata.id"
+                          class="color"
+                          href="JavaScript:void(0);"
+                        >
+                          {{ childdata.name }}
+                          <span class="uk-align-right uk-margin-remove">
+                            {{ childdata.count }}
+                          </span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+                <span v-if="categoryLoading">loading...</span>
+              </li>
+              <li>
+                <%- partial('form_search.ejs') %>
+              </li>
+            </ul>
+
+            <!-- uk-switcher -->
+          </div>
+          <!-- div -->
+        </div>
+        <!-- uk-width-auto@m -->
+        <!--  offcanvas-start -->
+        <!--  offcanvas-start -->
+        <a
+          uk-navbar-toggle-icon=""
+          href="#offcanvas-tab"
+          uk-toggle
+          class="uk-navbar-toggle toggle-tab uk-hidden@m uk-navbar-toggle-icon uk-icon"
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+            data-svg="navbar-toggle-icon"
+          >
+            <rect y="9" width="20" height="2"></rect>
+            <rect y="3" width="20" height="2"></rect>
+            <rect y="15" width="20" height="2"></rect>
+          </svg>
+        </a>
+        <!-- offcanvas tab start-->
+        <!-- offcanvas tab start-->
+
+        <!--  offcanvas-tab -->
+        <%- partial('offcanvas.ejs') %>
+        <!-- uk-width-4-5 -->
+        <!-- <div class="uk-width-1-3@m padding-none"> -->
+        <!-- sevice-item-start -->
+
+        <div class="uk-width-4-5@m padding-none">
+          <div
+            class="uk-article uk-background-muted"
+            v-bind:class="childobject"
+            uk-grid
+          >
+            <div
+              class="uk-padding-small uk-padding-remove-right"
+              v-bind:class="childobject1"
+              style="
+                              padding-top: 0;"
+            >
+              <div
+                class="uk-child-width-expand top-rating uk-padding-small uk-padding-remove-left"
+                style="margin-bottom: 20px;"
+                uk-grid
+              >
+                <div class="uk-text-left second-section-searchpage-top">
+                  <!-- <p><i class="fa fa-star-half-o"></i>Rating</p> -->
+                  <div class="">
+                    <select
+                      class="uk-select review-dropdown"
+                      @change="SortDisplay"
+                      name="review_search"
+                    >
+                      <option value="">Filter-By</option>
+                      <option value="more-hits"
+                        ><i class="fa fa-star-half-o"></i>Hits
+                      </option>
+                      <option value="more-ratings"
+                        ><i class="fa fa-star-half"></i> Ratings</option
+                      >
+                      <option value="review"
+                        ><i class="fa fa-star-half"></i>Reviews</option
+                      >
+                    </select>
+                  </div>
+                </div>
+                <div class="uk-text-center">
+                  <p v-if="result">{{ result }} Results</p>
+                </div>
+                <div class="uk-text-right uk-padding-remove">
+                  <span class="list-icon" @click="listview()"
+                    ><i
+                      v-bind:style="{ color: listactiveColor}"
+                      class="fa fa-bars"
+                    ></i
+                  ></span>
+                  <span class="list-icon" @click="thumbview()"
+                    ><i
+                      v-bind:style="{ color: thumbactiveColor}"
+                      class="fa fa-th"
+                    ></i
+                  ></span>
+                  <span class="list-icon" @click="maphide()"
+                    ><i
+                      v-bind:style="{ color: activeColor}"
+                      class="fa fa-map-marker"
+                    ></i>
+                  </span>
+                </div>
+              </div>
+              <div
+                class="uk-child-width-expand@m uk-text-left uk-margin-remove"
+                uk-grid
+              >
+                <div v-bind:class="childobject2" class="uk-text-left" uk-grid>
+                  <template>
+                    <div
+                      v-for="item in mountedservice"
+                      class="uk-margin-remove uk-padding-small uk-padding-remove-left uk-padding-remove-top "
+                    >
+                      <%- partial('search_service_item.ejs') %>
+                    </div>
+                
+                    <div
+                      v-if="!mountedservice || !mountedservice.length"
+                      class="uk-text-center uk-padding-small "
+                    >
+                      No service found!
+                    </div>
+                  </template>
+                  <!-- showing for seo purpose  -->
+                  <div class="uk-margin-remove-top  " style="display: none;">
+                    <% servicesRecent.forEach(function(item){ %>
+                    <%- partial('../common/service_item.ejs', { item: item }) %>
+                    <% }); %>
+                 </div>
+
+                </div>
+              </div>
+              <!-- View all -->
+              <p
+                class="uk-margin uk-text-center uk-margin-large-top loda-more-home"
+                v-if="viewallStatus"
+              >
+                <a
+                  @click="ShowMoreServices()"
+                  class="uk-button uk-button-primary uk-text-bold uk-button-large uk-text-uppercase "
+                  >Load More</a
+                >
+              </p>
+            </div>
+
+            <!-- Hide Map -->
+            <div class="uk-padding-remove-horizontal uk-width-expand ">
+              <%- partial('map.ejs') %>
+            </div>
+            <!-- Hide Map -->
+          </div>
+        </div>
+        <!---modallllllll for log in-->
+        <div id="modal-center" class="uk-flex-top" uk-modal>
+          <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
+            <button
+              class="uk-modal-close-default"
+              type="button"
+              uk-close
+            ></button>
+            <%- partial('../common/modallogin.ejs') %>
+          </div>
+        </div>
+        <!--end of modal-->
+        <!-- uk-article -->
+      </div>
+      <!-- uk-width-1-3@m -->
+      <!--  map-start -->
+    </div>
+    <!-- uk-grid -->
+    <!-- uk-container -->
+  </section>
+  <!-- category-tab -->
+</div>
+<%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>

@@ -1,0 +1,605 @@
+
+
+<section class="product-details uk-section uk-padding-remove-bottom">
+    <div id="details" v-cloak>
+    <div class="uk-container uk-padding uk-padding-remove-top padding-mobile">
+      <div class="uk-grid">
+      <!-- uk-grid -->
+        <div class="uk-width-1-4@m uk-visible@m">
+          <div class="user uk-padding uk-background-default uk-margin-medium-bottom">
+            <svg width="200" height="200" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" data-svg="user"><circle fill="none" stroke="#aaa" stroke-width="1.1" cx="9.9" cy="6.4" r="4.4"></circle><path fill="none" stroke="#aaa" stroke-width="1.1" d="M1.5,19 C2.3,14.5 5.8,11.2 10,11.2 C14.2,11.2 17.7,14.6 18.5,19.2"></path></svg>
+          </div>
+          
+          <div class="contact-details uk-margin-small">
+            <p class="uk-padding-small uk-margin-small"><i class="fa fa-phone uk-padding-sma"></i> Phone: <%= item.phone%></p>
+            <p class="uk-padding-small uk-margin-small"><i class="fa fa-id-card-o"></i>Contact Service Provider </p>
+            <p class="uk-padding-small uk-margin-small">
+                <a href="mailto:abc@example.com"> <i class="fa fa-envelope"></i>Email a friend</a>
+            </p>
+
+                
+           
+          
+           
+             <% if(favourite && favourite.id){ %>
+                <p class="uk-padding-small uk-margin-small"> <i class="fa fa-heart"></i> favorite marked  </p>
+             <% } else{ %>  
+        
+                <p  :syncing="fvalue" @click="fav('<%= postid %>')" class="uk-padding-small    uk-margin-small">    
+                    <span slot="syncing-state">   
+                    <span v-if="fvalue"><i class="fa fa-heart"></i>Mark as favorite</span>   
+                    <span v-else><i class="fa fa-heart"></i>favorite marked</span>
+                    </span>       
+                </p>       
+                      
+                
+            <% } %>
+         
+        
+
+
+
+
+
+            <p class="uk-padding-small uk-margin-small"><i class="fa fa-flag"></i>Mark as Inactive</p>
+          </div>
+        </div> <!-- uk-width-1-4 -->
+
+        <div class="uk-width-1-4@m uk-grid-small uk-margin-remove uk-hidden@m uk-hidden@l uk-hidden@xl">
+          <div class="uk-margin-small-bottom author-details uk-background-default uk-flex uk-flex-middle uk-padding-remove-left">
+            <div class="uk-align-left uk-margin-remove-bottom uk-padding-small uk-margin-remove-right">
+                  <img class="uk-border-circle" data-yy="hello" src="images/user.png" uk-img>
+                </div>
+                <div class="uk-align-right uk-margin-remove-bottom uk-margin-remove-left">
+                  <h4 class="contact-number uk-margin-remove">Asraf Zaman</h4>  
+              <a href="#"><span class="fa fa-phone" title="Contact"></span></a>
+              <a href="#"><span class="fa fa-mobile" title="Mobile"></span></a>
+              <a href="#"><span class="fa fa-heart" title="Favorite"></span></a>
+              <a href="#"><span class="fa fa-flag" title="Flag"></span></a>
+                  </div>
+          </div>
+        </div>
+
+      <!-- sevice-item-start -->
+        <div class="uk-width-expand@m">
+          <div class="uk-article uk-padding padding-mobile uk-background-default">
+          <h1 class="uk-text-lead"><%=item.title%></h1>
+            <div class="uk-grid-small uk-margin-remove uk-flex-middle uk-padding-remove uk-grid">
+                    <div class="uk-width-auto review uk-padding-remove">
+                      <div class="uk-inline">
+                    <button class="uk-button uk-button-default uk-padding-remove" type="button"> 
+                         <%  val =Total.Taverage %2 %>
+                      <% if( val == 0 || val==1){ %>
+                            <% if(Total.Taverage==0){ %>
+                              <% for(var i=1; i<= 5; i++) {%>
+                                <i class="fa fa-star-o"></i>
+                              <% } %>
+                            <% } else{ %>  
+                              <i class="fa fa-star"></i>
+                                <% } %>
+                      <% } else{ %>  
+                          <i class="fa fa-star-half-o"></i>
+                       <% } %>
+
+                       <% for(var i=1; i< Total.Taverage; i++) {%>
+                        <i class="fa fa-star"></i>
+                      <% } %>
+
+                      
+                      
+                           <i class="fa fa-angle-down"></i>
+                          </button>
+                    <div class="uk-dropdown" uk-dropdown="animation: uk-animation-slide-top-small; duration: 300">
+                    <table class="uk-table">
+                        <caption class="uk-text-center"><%=Total.Taverage %> out of <%= Total.count %> reviews</caption>
+
+                        <tbody>
+                            <tr>
+                                <td><a href="#">Overall</a></td>
+                                <td><progress id="js-progressbar" class="uk-progress" 
+                                  value="<%= Total.Toverall *20 %>" max="100"></progress></td>
+                                <td><%= Total.Toverall *20  %></td>
+                            </tr>
+                            <tr>
+                                <td><a href="#">skill</a></td>
+                                <td><progress id="js-progressbar" class="uk-progress" 
+                                  value="<%= Total.Tskill * 20 %>" max="100"></progress></td>
+                                <td><%= Total.Tskill *20 %></td>
+                            </tr>
+                            <tr>
+                                <td><a href="#">Communicate</a></td>
+                                <td><progress id="js-progressbar" class="uk-progress" 
+                                  value="<%= Total.Tcommunicate *20 %>" max="100"></progress></td>
+                                <td><%= Total.Tcommunicate *20  %></td>
+                            </tr>
+                            <tr>
+                                <td><a href="#">price</a></td>
+                                <td><progress id="js-progressbar" class="uk-progress" 
+                                  value="<%= Total.Tprice *20 %>" max="100"></progress></td>
+                                <td><%= Total.Tprice *20  %></td>
+                            </tr>
+                            <tr>
+                                <td><a href="#">Ontime</a></td>
+                                <td><progress id="js-progressbar" class="uk-progress" 
+                                  value="<%= Total.Tontime *20 %>" max="100"></progress></td>
+                                <td><%= Total.Tontime *20  %></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                  </div>
+                </div>
+                    </div>
+                    <div class="uk-width-expand uk-text-center">
+                        <a class="uk-link-text" href="#review-tab" uk-scroll> </a>
+                    </div>
+                    <div class="uk-width-auto mobile-full-width padding-none">
+                       <a class="uk-link-text" href="#"><%= Total.count %> Reviews</a>
+                    </div>
+                </div>
+                <ul class="uk-list uk-link-text">
+                <li>Category: <a href="#"><%= item.category && item.category.name ? item.category.name:"" %></li>
+                <li>Sub Category: <a href="#"><%=  item.category && item.category.tags ? item.category.tags : "" %> </a></li>
+                <li>Area Offerd: <a href="#"><%=  item.area_offered ?  item.area_offered : "" %></a></li>
+            </ul>
+            <p>Description:</p>
+            <p> <%=item.description%></p>
+
+            <p> Contact <%=item.phone%></p>
+
+
+
+              <ul class="uk-list uk-link-text">
+                <li>Compensation: <%= item.compensation%> </li>
+            </ul>
+          </div><!-- uk-article -->
+          <div class="uk-article uk-margin-medium-top uk-background-default">
+            <div class="uk-position-relative" uk-slideshow="animation: fade">
+                <ul class="uk-slideshow-items uk-margin-xlarge-bottom uk-text-center">
+                    <li>
+                      <svg width="350" height="350" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" data-svg="image"><circle cx="16.1" cy="6.1" r="1.1" fill="#aaa"></circle><rect fill="none" stroke="#aaa" x=".5" y="2.5" width="19" height="15"></rect><polyline fill="none" stroke="#aaa" stroke-width="1.01" points="4,13 8,9 13,14"></polyline><polyline fill="none" stroke="#aaa" stroke-width="1.01" points="11,12 12.5,10.5 16,14"></polyline></svg>
+                    </li>
+                    <li>
+                      <svg width="350" height="350" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" data-svg="image"><circle cx="16.1" cy="6.1" r="1.1" fill="#aaa"></circle><rect fill="none" stroke="#aaa" x=".5" y="2.5" width="19" height="15"></rect><polyline fill="none" stroke="#aaa" stroke-width="1.01" points="4,13 8,9 13,14"></polyline><polyline fill="none" stroke="#aaa" stroke-width="1.01" points="11,12 12.5,10.5 16,14"></polyline></svg>
+                    </li>
+                    <li>
+                      <svg width="350" height="350" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" data-svg="image"><circle cx="16.1" cy="6.1" r="1.1" fill="#aaa"></circle><rect fill="none" stroke="#aaa" x=".5" y="2.5" width="19" height="15"></rect><polyline fill="none" stroke="#aaa" stroke-width="1.01" points="4,13 8,9 13,14"></polyline><polyline fill="none" stroke="#aaa" stroke-width="1.01" points="11,12 12.5,10.5 16,14"></polyline></svg>
+                    </li>
+                </ul>
+
+                <div class="uk-position-bottom-center uk-position-small nav-img">
+                    <ul class="uk-thumbnav">
+                        <li uk-slideshow-item="0">
+                          <a href="#">
+                            <svg width="70" height="70" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" data-svg="image"><circle cx="16.1" cy="6.1" r="1.1" fill="#aaa"></circle><rect fill="none" stroke="#aaa" x=".5" y="2.5" width="19" height="15"></rect><polyline fill="none" stroke="#aaa" stroke-width="1.01" points="4,13 8,9 13,14"></polyline><polyline fill="none" stroke="#aaa" stroke-width="1.01" points="11,12 12.5,10.5 16,14"></polyline></svg>
+                          </a>
+                        </li>
+                        <li uk-slideshow-item="1">
+                          <a href="#">
+                            <svg width="70" height="70" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" data-svg="image"><circle cx="16.1" cy="6.1" r="1.1" fill="#aaa"></circle><rect fill="none" stroke="#aaa" x=".5" y="2.5" width="19" height="15"></rect><polyline fill="none" stroke="#aaa" stroke-width="1.01" points="4,13 8,9 13,14"></polyline><polyline fill="none" stroke="#aaa" stroke-width="1.01" points="11,12 12.5,10.5 16,14"></polyline></svg>
+                          </a>
+                        </li>
+                        <li uk-slideshow-item="2">
+                          <a href="#">
+                            <svg width="70" height="70" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" data-svg="image"><circle cx="16.1" cy="6.1" r="1.1" fill="#aaa"></circle><rect fill="none" stroke="#aaa" x=".5" y="2.5" width="19" height="15"></rect><polyline fill="none" stroke="#aaa" stroke-width="1.01" points="4,13 8,9 13,14"></polyline><polyline fill="none" stroke="#aaa" stroke-width="1.01" points="11,12 12.5,10.5 16,14"></polyline></svg>
+                          </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+          </div> <!-- uk-article -->
+          <!--  map-start -->
+          <div class="uk-article uk-padding uk-background-default uk-margin-medium-top">
+            <p>Location:</p>
+            
+            <iframe  width="300" height="170" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q='<%= item.latitude %>','<%= item.longtitude %>'&hl=es;z=14&amp;output=embed"></iframe>
+
+          </div><!-- uk-width-expand@m -->
+
+          
+          <div id="review-tab" class="uk-article review-tab uk-padding padding-mobile uk-background-default uk-margin-medium-top uk-overflow-hidden">
+              <ul class="uk-flex-left" uk-tab>
+                    <li class="uk-active">
+                      <a href="#">Reviews</a>
+                    </li>
+                    <li><a href="#">New Review</a></li>
+                </ul> <!-- uk-tab-filter -->
+                <ul class="uk-switcher uk-margin">
+                <li>
+                    <% sreview.forEach(function(item){ %>
+                    <div class="uk-grid uk-grid-small uk-text-center uk-margin-remove">
+                      <div class="review-user uk-padding-small uk-width-auto uk-border-circle">
+                          <img src="../images/user.png" uk-img>
+                      </div>
+                    <div class="uk-margin uk-align-right margin-left uk-width-expand uk-text-left uk-flex-middle uk-flex uk-padding-remove-left">
+                      <h3 class="author-name"><%= item.user_id.fullName %></h3>
+                    </div> 
+                    </div>
+                    <div class="uk-margin-bottom uk-border-bottom" >
+                      
+                      <div class="uk-child-width-expand uk-grid-small uk-text-center uk-margin-top uk-grid">
+                        <div>
+                            <div class="reviews">  
+                              <% for(var i=0; i< item.overall  ; i++) {%>
+                                <i class="fa fa-star"></i> 
+                              <% } %>
+                              <% for(var i=0; i< 5-item.overall  ; i++) {%>
+                              <i class="fa fa-star-o"></i>
+                              <% } %>
+                            </div>
+                            <div class="uk-list uk-margin-remove">
+                              <p><span>Overall</span><span>( <%= item.overall %>/5)</span></p>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="reviews">  
+                              <% for(var i=0; i< item.skill  ; i++) {%>
+                                <i class="fa fa-star"></i> 
+                              <% } %>
+                              <% for(var i=0; i< 5-item.skill   ; i++) {%>
+                                <i class="fa fa-star-o"></i>
+                              <% } %>
+                            </div>
+                            <div class="uk-list uk-margin-remove">
+                              <p><span>Skill</span><span>(<%= item.skill %>/5)</span></p>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="reviews">  
+                              <% for(var i=0; i< item.ontime  ; i++) {%>
+                                      <i class="fa fa-star"></i> 
+                              <% } %>
+                              <% for(var i=0; i< 5-item.ontime   ; i++) {%>
+                                    <i class="fa fa-star-o"></i>
+                              <% } %>
+                            </div>
+                            <div class="uk-list uk-margin-remove">
+                              <p><span>Ontime</span><span>(<%= item.ontime %>/5)</span></p>
+                            </div>
+                        </div>
+                       <div>
+                          <div class="reviews">  
+              
+                                
+
+                        <% for(var i=0; i< item.price   ; i++) {%>
+                                 <i class="fa fa-star"></i> 
+                        <% } %>
+
+                       <% for(var i=0; i< 5-item.price   ; i++) {%>
+                              <i class="fa fa-star-o"></i>
+                       <% } %>
+                            </div>
+  
+  
+                            
+                            <div class="uk-list uk-margin-remove">
+                          <p><span>Price</span><span>(<%= item.price %>/5)</span></p>
+                      </div>
+                      </div>
+                      <div>
+                          <div class="reviews">  
+                            
+
+                    <% for(var i=0; i< item.communicate  ; i++) {%>
+   
+                                <i class="fa fa-star"></i>
+
+                      <% } %>
+
+                      <% for(var i=0; i< 5-item.communicate  ; i++) {%>
+   
+                        <i class="fa fa-star-o"></i>
+
+                       <% } %>
+                                
+                          </div>
+                          <div class="uk-list uk-margin-remove">
+                          <p><span>Communication</span><span>(<%= item.communicate %>/5)</span></p>
+                      </div>
+                      </div>
+                        
+                    </div>
+                    <div>
+                      <p class="uk-text-left review-desc"><%= item.description %> </p>
+                    </div>
+  
+                    </div>
+                  <% }); %>
+                </li>
+
+
+
+
+                  <div class="uk-grid">
+                      <div class="uk-width-auto mobile-full-width">
+                          <div class="">
+                          
+                       <li>
+                        <fieldset class="uk-fieldset">
+                        <ajax-form action="review" :syncing.sync="syncing" :cloud-error.sync="cloudError"  :form-data="formData" :form-rules="formRules" :form-errors.sync="formErrors" @submitted="submittedForm()">
+                          <!-- <%= postid %> -->
+                            <div class="uk-margin">
+                                      <label class="">Title</label>
+                                      <input class="uk-input"  name= "title" type="text" :class="[formErrors.title ? 'is-invalid' : '']" v-model.trim="formData.title" placeholder="Type Your Title" value=[formData.title]>
+                              <div class="invalid-feedback uk-alert-warning uk-margin" v-if="formErrors.title">Please provide a valid title</div>                 
+                            </div>              
+                                  
+                            
+                            <div class="uk-margin">
+                                <!-- <label class="">pid</label> -->
+                                <input id="postId" class="uk-input" name="pid"  type="hidden" value="<%=postid %>">
+                            </div>
+                            
+
+                        <div class="uk-margin">
+                                <label class="">area</label>
+                                <textarea class="uk-textarea"  name= "area"  rows="3" :class="[formErrors.area ? 'is-invalid' : '']" v-model.trim="formData.area" placeholder="Review Description"></textarea>
+                              <div class="invalid-feedback uk-alert-warning uk-margin" v-if="formErrors.area">Please provide a valid title</div>
+                    </div>
+
+                      <fieldset class="uk-fieldset">
+                          <div class="uk-margin">
+                              <label>Do you receive the service?</label>
+                                        
+                        <select class="uk-select" name="opt" type="text" :class="[formErrors.opt ? 'is-invalid' : '']" v-model.trim="formData.opt" >
+                                    <option>Yes</option>
+                                    <option>No</option>
+                          </select>       
+                          <div class="invalid-feedback uk-alert-warning uk-margin" v-if="formErrors.opt">Please select yes or no</div>                </div>     
+                                            
+                          <div class="uk-margin-bottom">
+                              <ajax-button :syncing="syncing"   class="uk-button uk-button-primary uk-border-pill uk-width-1-1">Sign in</ajax-button>
+                            </div>
+                                                
+                                          
+                                        
+                                      <div class="uk-width-expand">
+                                          <div class="uk-form-label">Overall</div>
+                                          <div class="uk-form-controls uk-form-controls-text" >
+                                            <label> <input class="uk-radio" type="radio" name="overall" :class="[formErrors.overall ? 'is-invalid' : '']" v-model.trim="formData.overall" value="5">Great</label>
+                                              <label><input class="uk-radio" type="radio" name="overall"  :class="[formErrors.overall ? 'is-invalid' : '']" v-model.trim="formData.overall"  value="4.5" >Good</label>
+                                                <label><input class="uk-radio" type="radio" name="overall"  :class="[formErrors.overall ? 'is-invalid' : '']" v-model.trim="formData.overall" value="4" >Moderate</label>
+                                              <label><input class="uk-radio" type="radio" name="overall"  :class="[formErrors.overall ? 'is-invalid' : '']" v-model.trim="formData.overall" value="3" >Not Bad</label>
+                                                <label><input class="uk-radio" type="radio" name="overall" :class="[formErrors.overall ? 'is-invalid' : '']" v-model.trim="formData.overall" value="2" >Bad</label>
+                                              <label><input class="uk-radio" type="radio" name="overall"  :class="[formErrors.overall ? 'is-invalid' : '']" v-model.trim="formData.overall"  value="1" >Very Bad</label>
+                                              <div class="invalid-feedback uk-alert-warning uk-margin" v-if="formErrors.overall">select any option</div>
+                                            </div>
+                                          <div class="uk-form-label uk-margin uk-margin-remove-bottom">Skill</div>
+                                          <div class="uk-form-controls uk-form-controls-text">
+                                              <label><input class="uk-radio" type="radio" name="skill" :class="[formErrors.skill ? 'is-invalid' : '']" v-model.trim="formData.skill" value="5" > Great</label>
+                                              <label><input class="uk-radio" type="radio" name="skill" :class="[formErrors.skill ? 'is-invalid' : '']" v-model.trim="formData.skill" value="4.5" >Good</label>
+                                                <label><input class="uk-radio" type="radio" name="skill" :class="[formErrors.skill ? 'is-invalid' : '']"v-model.trim="formData.skill" value="4" >Moderate</label>
+                                              <label><input class="uk-radio" type="radio" name="skill" :class="[formErrors.skill ? 'is-invalid' : '']" v-model.trim="formData.skill" value="3" >Not Bad</label>
+                                                <label><input class="uk-radio" type="radio" name="skill":class="[formErrors.skill ? 'is-invalid' : '']" v-model.trim="formData.skill" value="2" >Bad</label>
+                                              <label><input class="uk-radio" type="radio" name="skill":class="[formErrors.skill ? 'is-invalid' : '']" v-model.trim="formData.skill" value="1" >Very Bad</label>
+                                              <div class="invalid-feedback uk-alert-warning uk-margin" v-if="formErrors.skill">select any option for skill </div>
+                                            
+                                          </div>
+                                          <div class="uk-form-label uk-margin uk-margin-remove-bottom">Ontime</div>
+                                          <div class="uk-form-controls uk-form-controls-text">
+                                              <label><input class="uk-radio" type="radio" name="ontime" :class="[formErrors.ontime ? 'is-invalid' : '']" v-model.trim="formData.ontime" value="5" >Great</label>
+                                              <label><input class="uk-radio" type="radio" name="ontime":class="[formErrors.ontime ? 'is-invalid' : '']" v-model.trim="formData.ontime"  value="4.5" >Good</label>
+                                                <label><input class="uk-radio" type="radio" name="ontime" :class="[formErrors.ontime ? 'is-invalid' : '']" v-model.trim="formData.ontime"  value="4" >Moderate</label>
+                                              <label><input class="uk-radio" type="radio" name="ontime"  :class="[formErrors.ontime ? 'is-invalid' : '']" v-model.trim="formData.ontime" value="3" >Not Bad</label>
+                                                <label><input class="uk-radio" type="radio" name="ontime" :class="[formErrors.ontime ? 'is-invalid' : '']" v-model.trim="formData.ontime"  value="2" >Bad</label>
+                                              <label><input class="uk-radio" type="radio" name="ontime" :class="[formErrors.ontime ? 'is-invalid' : '']" v-model.trim="formData.ontime" value="1" >Very Bad</label>
+                                              <div class="invalid-feedback uk-alert-warning uk-margin" v-if="formErrors.ontime">select any option for ontime</div>
+                                            </div>
+                                        
+                                          <div class="uk-form-label uk-margin uk-margin-remove-bottom">Price</div>
+                                          <div class="uk-form-controls uk-form-controls-text">
+                                              <label>  <input class="uk-radio" type="radio" name="price" :class="[formErrors.price ? 'is-invalid' : '']" v-model.trim="formData.price" value="5" > Great</label>
+                                              <label> <input class="uk-radio" type="radio" name="price"  :class="[formErrors.price ? 'is-invalid' : '']" v-model.trim="formData.price" value="4.5" >Good</label>
+                                                <label><input class="uk-radio" type="radio" name="price" :class="[formErrors.price ? 'is-invalid' : '']" v-model.trim="formData.price"   value="4" >Moderate</label>
+                                              <label><input class="uk-radio" type="radio" name="price" :class="[formErrors.price ? 'is-invalid' : '']" v-model.trim="formData.price"  value="3" >Not Bad</label>
+                                                <label><input class="uk-radio" type="radio" name="price" :class="[formErrors.price ? 'is-invalid' : '']" v-model.trim="formData.price"  value="2" >Bad</label>
+                                              <label><input class="uk-radio" type="radio" name="price"  :class="[formErrors.price ? 'is-invalid' : '']" v-model.trim="formData.price"  value="1" >Very Bad</label>
+                                              <div class="invalid-feedback uk-alert-warning uk-margin" v-if="formErrors.price">select any option for price</div>
+                                            </div>
+                                          
+                                          <div class="uk-form-label uk-margin uk-margin-remove-bottom">Communicate</div>
+                                          <div class="uk-form-controls uk-form-controls-text">
+                                              <label><input class="uk-radio" type="radio" name="communicate" :class="[formErrors.communicate ? 'is-invalid' : '']" v-model.trim="formData.communicate"  value="5">Great</label>
+                                              <label><input class="uk-radio" type="radio" name="communicate" :class="[formErrors.communicate ? 'is-invalid' : '']" v-model.trim="formData.communicate" value="4.5" >Good</label>
+                                                <label><input class="uk-radio" type="radio" name="communicate" :class="[formErrors.communicate ? 'is-invalid' : '']" v-model.trim="formData.communicate" value="4" >Moderate</label>
+                                              <label><input class="uk-radio" type="radio" name="communicate" :class="[formErrors.communicate ? 'is-invalid' : '']" v-model.trim="formData.communicate"  value="3" >Not Bad</label>
+                                                <label><input class="uk-radio" type="radio" name="communicate" :class="[formErrors.communicate ? 'is-invalid' : '']" v-model.trim="formData.communicate"value="2" >Bad</label>
+                              
+                                                <label><input class="uk-radio" type="radio" name="communicate" :class="[formErrors.communicate ? 'is-invalid' : '']" v-model.trim="formData.communicate"  value="1" >Very Bad</label>
+                                                <div class="invalid-feedback uk-alert-warning uk-margin" v-if="formErrors.communicate">select any option for communicate</div>
+                                              </div>
+                                      
+                                    </div>
+                                  </fieldset>
+                        </ajax-form>
+                
+
+              
+              </li> 
+            </ul> <!-- ofuk-switcher -->
+          </div> <!-- review-tab -->
+        </div><!-- uk-width-1-3@m -->
+
+
+    <!--  sidebar-start -->
+        <div class="uk-width-1-4@m">
+          <div class="uk-card uk-card-default uk-padding-small">
+              <div class="uk-card-header uk-padding-small uk-margin-bottom uk-padding-remove-left uk-padding-remove-top">
+                  <div class="uk-grid uk-grid-small uk-flex-middle">
+                      <h4 class="uk-text-bold uk-margin-remove-bottom">Promote Your Add</h4>
+                  </div>
+              </div> <!-- uk-card-header -->
+              <div class="uk-card-body uk-padding-remove uk-margin-small-top">
+                <ul class="uk-list">
+                  <li>1 Month - $15</li>
+                  <li>6 Month - $75</li>
+                  <li>1 Year - $120</li>
+              </ul>
+              </div> <!-- uk-card-body -->
+               <div class="uk-margin uk-margin-remove-bottom">
+                  <a href="#" class="uk-text-bold uk-button uk-button-text">Subscribe</a>
+              </div> 
+          </div> <!-- uk-card -->
+
+
+          <div class="uk-card uk-card-default uk-padding-small uk-margin-medium-top">
+              <div class="uk-card-header uk-padding-small uk-margin-bottom uk-padding-remove-left uk-padding-remove-top">
+                  <div class="uk-grid uk-grid-small uk-flex-middle">
+                      <h4 class="uk-text-bold uk-margin-remove-bottom"><a href="#">Hot Service</a></h4>
+                  </div>
+              </div>
+              <div class="uk-card-body uk-padding-remove uk-margin-small-top">
+                <div class="uk-grid uk-grid-small">
+                      <div class="uk-width-auto">
+                          <img class="" width="50" height="50" src="images/product-rating.png">
+                      </div>
+                      <div class="uk-width-expand">
+                          <h5 class="uk-margin-remove-bottom"><a href="#">Monitor the code?M</a></h5>
+                            <div class="reviews">  
+                    <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-half-o"></i>
+                            <i class="fa fa-star-o"></i>
+                        </div>
+                      </div>
+                  </div> <!-- uk-grid -->
+
+                  <div class="uk-grid uk-grid-small">
+                      <div class="uk-width-auto">
+                          <img class="" width="50" height="50" src="images/product-rating.png">
+                      </div>
+                      <div class="uk-width-expand">
+                          <h5 class=" uk-margin-remove-bottom"><a href="#">Monitor the code</a></h5>
+                            <div class="reviews">  
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-half-o"></i>
+                            <i class="fa fa-star-o"></i>
+                        </div>
+                      </div>
+                  </div> <!-- uk-grid -->
+
+                  <div class="uk-grid-small uk-grid">
+                      <div class="uk-width-auto">
+                          <img class="" width="50" height="50" src="images/product-rating.png">
+                      </div>
+                      <div class="uk-width-expand">
+                        <h5 class=" uk-margin-remove-bottom"><a href="#">Monitor the code</a></h5>
+                           <div class="reviews">  
+                    <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-half-o"></i>
+                            <i class="fa fa-star-o"></i>
+                            <i class="">(12)</i>
+                        </div>
+                      </div>
+                  </div><!-- uk-grid -->
+              </div> <!-- uk-card-body -->
+          </div> <!-- uk-card -->
+        </div><!-- uk-width-1-4@m -->
+      </div><!-- uk-grid -->
+    </div><!-- uk-container -->
+  </section> <!-- category-tab -->
+    
+
+    <% if(serviceListLength > 0){ %>
+    <section id="service" class="service uk-background-muted">
+        <div class="uk-section">
+            <div class="uk-container">
+                <div class="section-heading uk-margin-large-bottom uk-text-center">
+                    <!-- Section Sub Title -->
+                    <h4 class="uk-heading-small uk-margin-small uk-text-uppercase">Hot below Services</h4>
+                    <!-- Section Title -->
+                    <h1 class="uk-heading-medium uk-margin-remove-top">The service provide your like this</h1>
+                </div> <!-- Section heading -->
+              
+                <div class="uk-margin-remove-top uk-grid">
+                    <% serviceList.forEach(function(item){ %>
+                    <div class="uk-width-1-3@m uk-width-1-1@s">
+                     
+                        <div class="uk-article">
+                            <div class="uk-card uk-overflow-hidden uk-background-default">
+                              <div class="uk-visible-toggle uk-position-relative">
+                                   <div class="uk-card-media-top">
+                                      <a href="#">
+                                          <img data-src="images/service-1.jpg" alt="" uk-img>
+                                      </a>
+                                      <span class="uk-label uk-position-absolute">Travel</span>
+                                  </div> <!-- uk-card-media-top -->
+                                  <div class="uk-overlay-primary uk-position-cover uk-hidden-hover">
+                                      <div class="uk-position-center">
+                                          <div class="uk-grid uk-grid-small uk-margin-remove">
+                                              <div class="uk-width-auto uk-padding-remove">
+                                                 <a href="#"><i class="overlay-icon fa fa-heart-o"></i></a>
+                                              </div>
+                                              <div class="uk-width-expand uk-margin-remove">
+                                                 <a href="#"> <i class="overlay-icon fa fa-long-arrow-right"></i></a>
+                                              </div>
+                                          </div>
+                                      </div> <!-- uk-position center -->
+                                  </div> <!-- uk-overlay primary -->
+                              </div> <!-- uk-visibilty -->
+                              <span class="uk-label uk-position-absolute">Travel</span>
+                              <div class="uk-card-body uk-padding-small uk-margin-small-top">
+                                 <h3 class="uk-card-title uk-margin-remove-top">
+                                      <a href="/service/<%= item.id %> "><%= item.title %></a>
+                                  </h3>
+                                  <p class="uk-text-emphasis uk-margin-small"><%= item.state.name %>, <%= item.city.name %></p>
+                                  <p class="uk-margin-remove-top">Compansation : <%= item.compensation %> </p>
+                              </div> <!-- uk-card-body -->
+                              <div class="uk-margin-remove-left service-meta uk-child-width-expand uk-grid">
+                                  <div class="uk-width-expand uk-padding-remove-left first-child">
+                                      <div class="uk-grid uk-grid-small uk-margin-remove uk-flex-middle uk-padding-small " style="font-size: 9px; padding :10px">
+                                          <div class="review uk-padding-remove">
+                                              <%  val =item.ranking%2; %>
+                                              <% if(val == 0 || val==1){ %>
+
+                                                  <i class="fa fa-star"></i>
+
+                                              <% } else{ %>  
+
+                                                  <i class="fa fa-star-half-o"></i>
+
+                                               <% } %> 
+
+                                               <% for(var i=1; i< item.ranking; i++) {%>
+
+                                                   <i class="fa fa-star"></i>
+
+                                               <% } %>
+                                                
+
+                                               <p class="uk-text-meta uk-margin-remove uk-display-inline-block">(<%= item.ranking %> )</p>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="uk-width-auto uk-padding-remove">
+                                      <div class="hover-icon uk-text-center">
+                                         <a class="uk-padding-small uk-display-inline-block"  href="#"><i class="fa fa-heart-o"></i></a>
+                                      </div>
+                                  </div>
+                                  <div class="uk-width-auto uk-padding-remove">
+                                      <div class="uk-text-center">
+                                         <a class="uk-padding-small read-more uk-display-block" href="#">Read More</a>
+                                      </div><!-- uk-text-center -->
+                                    </div> <!-- uk-width-1-3@m -->
+                                </div> <!-- service-meta -->
+                            </div> <!-- uk-card -->
+                         
+                        </div><!-- uk-article -->
+                    </div> <!-- uk-width-1-3@m -->
+                    <% }); %>                    
+                </div> <!-- uk-grid -->
+
+            </div><!-- uk-container -->
+        </div> <!-- uk-section -->
+    </section> <!-- end-section -->
+    <% } %>
+
+   
+
+</div>
+<%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>

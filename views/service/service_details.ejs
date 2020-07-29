@@ -1,0 +1,27 @@
+<ul class="uk-list uk-link-text service-details">
+  <li>
+    <span>Category</span> :
+    <a href="#"
+      ><%= item.parent_category && item.parent_category.name ?
+      item.parent_category.name:"" %></a
+    >
+  </li>
+  <li>
+    <span>Sub-category</span> :
+    <a href="#"
+      ><%= item.category && item.category.name ? item.category.name : "" %>
+    </a>
+  </li>
+  <li>
+    <span>Area Offered</span> :
+    <a href="#"><%= item.area_offered ? item.area_offered : "" %></a>
+  </li>
+</ul>
+<p class="uk-margin-remove uk-text-bold">Description:</p>
+<p class="uk-margin-remove"><%=item.description%></p>
+
+<ul class="uk-list">
+  <li>
+    <span class="uk-text-bold">Compensation:</span> <%= item.compensation%>
+  </li>
+</ul>

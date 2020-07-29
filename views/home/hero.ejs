@@ -1,0 +1,59 @@
+<div
+  id="hero"
+  class="hero uk-section-large uk-position-relative uk-background-no-repeat uk-flex uk-flex-center uk-flex-middle uk-background-cover"
+  data-src="images/banner-bg.jpg"
+  uk-img
+  style="margin-top: -80px;"
+>
+  <div class="uk-overlay-primary uk-position-cover"></div>
+  <div class="wrapper  uk-grid">
+    <div class="uk-width-1-1@s uk-width-1-1@m uk-width-1-1@l uk-width-1-1@xl">
+      <div class="uk-text-center uk-position-relative">
+        <h1 class="uk-text-primary title uk-margin-remove-bottom">
+          Search Local Service Professional
+        </h1>
+      </div>
+    </div>
+    <div class="uk-margin-auto uk-padding-remove uk-grid">
+      <div class="uk-width-1-1@s uk-width-1-1@m uk-padding-remove">
+        <form
+          method="GET"
+          class="form-inline uk-position-relative uk-margin-medium-top"
+          action="/search"
+        >
+          <div class="form-group search-block">
+            <input
+              type="search"
+              id="searchTag"
+              class="search-field"
+              placeholder="Search..."
+              value=""
+              name="searchTag"
+            />
+            <select
+              class="cate-dropdown uk-hidden@s categoryName"
+              id="categoryName"
+              name="categoryName"
+            >
+              <option value="">Select Category</option>
+
+              <% data.category.forEach(function(item){ %>
+              <option class="uk-text-bolder-home" value="<%= item.slug %>"
+                ><%= item.name %></option
+              >
+              <% item.child_categories.forEach(function(item){ %>
+              <option value="<%= item.slug %>">-- <%= item.name %></option>
+              <% }); %> <% }); %>
+            </select>
+
+            <button type="submit" class="uk-align-right" value="search">
+              <i class="fa fa-search"></i>Search
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- uk-grid -->
+</div>
+<!-- #hero -->

@@ -1,0 +1,137 @@
+<% if(me){ %>
+<fieldset class="uk-fieldset">
+    
+        <ajax-form action="review" :syncing.sync="syncing" :cloud-error.sync="cloudError" :form-data="formData" :form-rules="formRules" :form-errors.sync="formErrors" @submitted="submittedForm()">
+        <!-- <%= postid %> -->
+        <div class="uk-margin">
+            <label class="">Title</label>
+            <input class="uk-input" name="title" type="text" :class="[formErrors.title ? 'is-invalid' : '']" v-model.trim="formData.title" placeholder="Type Your Title" value=[formData.title]>
+            <div class="invalid-feedback uk-alert-warning uk-margin" v-if="formErrors.title">Please provide a valid title</div>
+        </div>
+
+        <div class="uk-margin">
+            <!-- <label class="">pid</label> -->
+            <input id="postId" class="uk-input" name="pid" type="hidden" value="<%=postid %>">
+        </div>
+
+        <div class="uk-margin">
+            <label class="">Review Description</label>
+            <textarea class="uk-textarea" name="area" rows="3" :class="[formErrors.area ? 'is-invalid' : '']" v-model.trim="formData.area" placeholder="Review Description (maximum 500 character)"></textarea>
+            <div class="invalid-feedback uk-alert-warning uk-margin" v-if="formErrors.area">Please provide a valid title</div>
+        </div>
+
+        <fieldset class="uk-fieldset uk-margin-bottom">
+            <div class="uk-margin">
+                <label>Do you receive the service?</label>
+                <select class="uk-select uk-float-right" name="opt" type="text" :class="[formErrors.opt ? 'is-invalid' : '']" v-model.trim="formData.opt">
+                    <option>Yes</option>
+                    <option>No</option>
+                </select>
+
+                <div class="invalid-feedback uk-alert-warning uk-margin" v-if="formErrors.opt">Please select yes or no</div>
+
+            </div>
+
+            <div class="uk-width-expand uk-background-muted uk-padding-small">
+                <div class="uk-form-label">Overall</div>
+                <div class="uk-form-controls uk-form-controls-text">
+                    <label>
+                        <input class="uk-radio" type="radio" name="overall" :class="[formErrors.overall ? 'is-invalid' : '']" v-model.trim="formData.overall" value="5">Great</label>
+                    <label>
+                        <input class="uk-radio" type="radio" name="overall" :class="[formErrors.overall ? 'is-invalid' : '']" v-model.trim="formData.overall" value="4.5">Good</label>
+                    <label>
+                        <input class="uk-radio" type="radio" name="overall" :class="[formErrors.overall ? 'is-invalid' : '']" v-model.trim="formData.overall" value="4">Moderate</label>
+                    <label>
+                        <input class="uk-radio" type="radio" name="overall" :class="[formErrors.overall ? 'is-invalid' : '']" v-model.trim="formData.overall" value="3">Not Bad</label>
+                    <label>
+                        <input class="uk-radio" type="radio" name="overall" :class="[formErrors.overall ? 'is-invalid' : '']" v-model.trim="formData.overall" value="2">Bad</label>
+                    <label>
+                        <input class="uk-radio" type="radio" name="overall" :class="[formErrors.overall ? 'is-invalid' : '']" v-model.trim="formData.overall" value="1">Very Bad</label>
+                    <div class="invalid-feedback uk-alert-warning uk-margin" v-if="formErrors.overall">select any option</div>
+                </div>
+                <div class="uk-form-label uk-margin uk-margin-remove-bottom">Skill</div>
+                <div class="uk-form-controls uk-form-controls-text">
+                    <label>
+                        <input class="uk-radio" type="radio" name="skill" :class="[formErrors.skill ? 'is-invalid' : '']" v-model.trim="formData.skill" value="5"> Great</label>
+                    <label>
+                        <input class="uk-radio" type="radio" name="skill" :class="[formErrors.skill ? 'is-invalid' : '']" v-model.trim="formData.skill" value="4.5">Good</label>
+                    <label>
+                        <input class="uk-radio" type="radio" name="skill" :class="[formErrors.skill ? 'is-invalid' : '']" v-model.trim="formData.skill" value="4">Moderate</label>
+                    <label>
+                        <input class="uk-radio" type="radio" name="skill" :class="[formErrors.skill ? 'is-invalid' : '']" v-model.trim="formData.skill" value="3">Not Bad</label>
+                    <label>
+                        <input class="uk-radio" type="radio" name="skill" :class="[formErrors.skill ? 'is-invalid' : '']" v-model.trim="formData.skill" value="2">Bad</label>
+                    <label>
+                        <input class="uk-radio" type="radio" name="skill" :class="[formErrors.skill ? 'is-invalid' : '']" v-model.trim="formData.skill" value="1">Very Bad</label>
+                    <div class="invalid-feedback uk-alert-warning uk-margin" v-if="formErrors.skill">select any option for skill </div>
+
+                </div>
+                <div class="uk-form-label uk-margin uk-margin-remove-bottom">Ontime</div>
+                <div class="uk-form-controls uk-form-controls-text">
+                    <label>
+                        <input class="uk-radio" type="radio" name="ontime" :class="[formErrors.ontime ? 'is-invalid' : '']" v-model.trim="formData.ontime" value="5">Great</label>
+                    <label>
+                        <input class="uk-radio" type="radio" name="ontime" :class="[formErrors.ontime ? 'is-invalid' : '']" v-model.trim="formData.ontime" value="4.5">Good</label>
+                    <label>
+                        <input class="uk-radio" type="radio" name="ontime" :class="[formErrors.ontime ? 'is-invalid' : '']" v-model.trim="formData.ontime" value="4">Moderate</label>
+                    <label>
+                        <input class="uk-radio" type="radio" name="ontime" :class="[formErrors.ontime ? 'is-invalid' : '']" v-model.trim="formData.ontime" value="3">Not Bad</label>
+                    <label>
+                        <input class="uk-radio" type="radio" name="ontime" :class="[formErrors.ontime ? 'is-invalid' : '']" v-model.trim="formData.ontime" value="2">Bad</label>
+                    <label>
+                        <input class="uk-radio" type="radio" name="ontime" :class="[formErrors.ontime ? 'is-invalid' : '']" v-model.trim="formData.ontime" value="1">Very Bad</label>
+                    <div class="invalid-feedback uk-alert-warning uk-margin" v-if="formErrors.ontime">select any option for ontime</div>
+                </div>
+
+                <div class="uk-form-label uk-margin uk-margin-remove-bottom">Price</div>
+                <div class="uk-form-controls uk-form-controls-text">
+                    <label>
+                        <input class="uk-radio" type="radio" name="price" :class="[formErrors.price ? 'is-invalid' : '']" v-model.trim="formData.price" value="5"> Great</label>
+                    <label>
+                        <input class="uk-radio" type="radio" name="price" :class="[formErrors.price ? 'is-invalid' : '']" v-model.trim="formData.price" value="4.5">Good</label>
+                    <label>
+                        <input class="uk-radio" type="radio" name="price" :class="[formErrors.price ? 'is-invalid' : '']" v-model.trim="formData.price" value="4">Moderate</label>
+                    <label>
+                        <input class="uk-radio" type="radio" name="price" :class="[formErrors.price ? 'is-invalid' : '']" v-model.trim="formData.price" value="3">Not Bad</label>
+                    <label>
+                        <input class="uk-radio" type="radio" name="price" :class="[formErrors.price ? 'is-invalid' : '']" v-model.trim="formData.price" value="2">Bad</label>
+                    <label>
+                        <input class="uk-radio" type="radio" name="price" :class="[formErrors.price ? 'is-invalid' : '']" v-model.trim="formData.price" value="1">Very Bad</label>
+                    <div class="invalid-feedback uk-alert-warning uk-margin" v-if="formErrors.price">select any option for price</div>
+                </div>
+
+                <div class="uk-form-label uk-margin uk-margin-remove-bottom">Communicate</div>
+                <div class="uk-form-controls uk-form-controls-text">
+                    <label>
+                        <input class="uk-radio" type="radio" name="communicate" :class="[formErrors.communicate ? 'is-invalid' : '']" v-model.trim="formData.communicate" value="5">Great</label>
+                    <label>
+                        <input class="uk-radio" type="radio" name="communicate" :class="[formErrors.communicate ? 'is-invalid' : '']" v-model.trim="formData.communicate" value="4.5">Good</label>
+                    <label>
+                        <input class="uk-radio" type="radio" name="communicate" :class="[formErrors.communicate ? 'is-invalid' : '']" v-model.trim="formData.communicate" value="4">Moderate</label>
+                    <label>
+                        <input class="uk-radio" type="radio" name="communicate" :class="[formErrors.communicate ? 'is-invalid' : '']" v-model.trim="formData.communicate" value="3">Not Bad</label>
+                    <label>
+                        <input class="uk-radio" type="radio" name="communicate" :class="[formErrors.communicate ? 'is-invalid' : '']" v-model.trim="formData.communicate" value="2">Bad</label>
+
+                    <label>
+                        <input class="uk-radio" type="radio" name="communicate" :class="[formErrors.communicate ? 'is-invalid' : '']" v-model.trim="formData.communicate" value="1">Very Bad</label>
+                    <div class="invalid-feedback uk-alert-warning uk-margin" v-if="formErrors.communicate">select any option for communicate</div>
+                </div>
+
+            </div>
+        </fieldset>
+        <div class="uk-margin-bottom">
+                <ajax-button type="submit" :syncing="syncing" class="uk-button uk-button-primary">Submit Review</ajax-button>
+        </div>
+    </ajax-form>    
+    
+    
+</fieldset>
+<% } else { %>
+    <p class="uk-alert uk-alert-warning">
+            <button class="uk-button uk-button-default uk-margin-small-right" type="button" uk-toggle="target: #modal-center">Login</button>
+    
+        <!-- Please login first! 
+        <a href="/login" class="uk-button uk-button-small uk-button-primary uk-float-right">Login</a> -->
+    </p>
+<% } %>

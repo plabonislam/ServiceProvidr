@@ -1,0 +1,60 @@
+<div id="welcome" class="uk-container uk-container-small uk-margin" v-cloak>
+
+    <div class="uk-grid-small uk-grid">
+
+        <div class="uk-width-1-3@m">
+
+            <%- partial('../common/profile.ejs', {me: me}) %>  
+            
+            <!-- End Profile -->
+            <div class="uk-margin-top">
+                <div class="uk-visible@m">
+                    <div class="uk-card uk-card-default ">
+                        <ul class="uk-nav uk-nav-default uk-padding-small">
+                            <li class="uk-nav-header uk-heading-small">My Account</li>
+                            <li class="uk-nav-divider"></li>
+                            <li class="uk-active"><a href="account">Dashboard</a></li>
+                            <li class="uk-nav-divider"></li>
+                            <li ><a href="my-posts">My Posts</a></li>
+                            <li class="uk-nav-divider"></li>
+                            <li><a href="new-posts">New Service Post</a></li>
+                            <li class="uk-nav-divider"></li>
+                            <li><a href="my-favourite-posts">My Favorite Posts</a></li>
+                            <!-- <li class="uk-nav-divider"></li> -->
+                            <!-- <li ><a href="edit-profile">Edit Account</a></li> -->
+                        </ul>
+                    </div>
+                </div>
+                <div class="uk-card uk-card-default">
+                    <div class=" uk-hidden@m">
+                        <nav uk-navbar>
+                            <div class="uk-navbar-center">
+                                <ul class="uk-navbar-nav uk-text-center">
+                                    <li><a href="my-posts">My Posts</a></li>
+                                    <li><a href="new-service-post">New Service Post</a></li>
+                                    <li><a href="my-favourite-posts"> My Favorite Posts</a></li>
+                                    <li><a href="edit-account">Edit Account</a></li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <!-- End Menu -->
+        </div>
+        
+        <div class="uk-width-expand@m">
+            <div class="uk-card uk-card-body uk-card-default uk-border-top" >
+                <h1 class="uk-heading-medium uk-text-center uk-margin-small-bottom">Your Info</h1>
+                <hr class="uk-divider-icon">
+                <ul class="uk-nav">
+                    <li> Name : <strong><%= me.fullName %></strong></li>
+                    <li> Email : <strong><%= me.emailAddress %></strong></li>
+                    <li> Phone : <strong><%= me.phone %></strong></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+<%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>
